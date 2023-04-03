@@ -9,6 +9,7 @@
 
     <form action="{{ url('/validar') }}" method="POST">
         @csrf
+         
         <table>
             <tr>
                 <th><h3>Questões:</h3></th>
