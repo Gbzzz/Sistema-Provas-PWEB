@@ -27,9 +27,17 @@ ENV APP_ENV=local
 ENV PHP_DATE_TIMEZONE America/Maceio
 ENV WEB_DOCUMENT_ROOT /app/public
 
-COPY ./laravel/ /app/
-
-COPY ./start.sh /opt/docker/provision/entrypoint.d/start.sh
+#instalar dependências da aplicação via composer
+RUN { echo "cd /app && composer install --no-interaction --optimize-autoloader"; \
+    #gerar variável app key
+    echo "php artisan key:generate"; \
+    # Optimizing Route loading
+    echo "php artisan route:cache"; \
+    # Optimizing View loading
+    echo "php artisan view:cache"; \
+    #atualização da base de dados
+    echo "php artisan migrate --force"; \
+    } > /opt/docker/provision/entrypoint.d/start.sh
 
 RUN chmod +x /opt/docker/provision/entrypoint.d/start.sh
 
