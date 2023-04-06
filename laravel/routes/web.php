@@ -19,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 // Rotas da parte do Formulário
 Route::get('/', [Controller::class, 'index']);
 
+Route::get('/questions/create', [QuestionController::class, 'index']);
+
+Route::post('/enviar', [QuestionController::class, 'store']);
+
