@@ -17,8 +17,8 @@ class CreateOptionsTable extends Migration
             $table->id();
             $table->integer('id_questao', false);
             $table->foreign('id_questao')->references('id_questao')->on('questions');
-            $table->text('enunciado');
-            $table->boolean('correcao');
+            $table->text('alternativa');
+            $table->boolean('valor');
             $table->timestamps();
         });
     }
