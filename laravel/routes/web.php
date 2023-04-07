@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\FormController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +15,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Rotas da parte do Formulário
-Route::get('/', [Controller::class, 'index']);
+Route::get('/', function () {
+    return view('welcome');
+});
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('/questions', function () {
+    return view('questions/index');
+})->middleware(['auth'])->name('questions');
+
+Route::get('/answers', function () {
+    return view('answers/index');
+})->middleware(['auth'])->name('questions');
+
+Route::post('/questions/store', [QuestionController::class, 'store'])->name('add_question');
+
+Route::post('/answers/store', [AnswerController::class, 'store'])->name('add_answer');
+
+Route::get('/answers', [AnswerController::class, 'index']);
+
+require __DIR__.'/auth.php';
