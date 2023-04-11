@@ -37,4 +37,9 @@ Route::post('/answers/store', [AnswerController::class, 'store'])->name('add_ans
 
 Route::get('/answers', [AnswerController::class, 'index']);
 
+Route::fallback(function()
+{
+    echo 'Essa rota não existe, <a href="'.url('/').'">clique aqui </a>para ir para página inicial';
+});
+
 require __DIR__.'/auth.php';
