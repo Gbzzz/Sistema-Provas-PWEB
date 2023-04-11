@@ -39,7 +39,16 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                ...
+                                    <form>
+                                        <div class="form-group">
+                                          <label for="exampleInputEmail1">Enunciado</label>
+                                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="...">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="exampleInputPassword1">Resposta</label>
+                                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="...">
+                                        </div>
+                                      </form>
                                 </div>
                                 <div class="modal-footer">
                                     <x-button type="button" class="mt" data-dismiss="modal">Close</x-button>
