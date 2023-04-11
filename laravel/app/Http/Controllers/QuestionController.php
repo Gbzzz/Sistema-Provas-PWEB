@@ -57,9 +57,10 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $questions = question::get();
+        return view('questions.list', compact('questions'));
     }
 
     /**
@@ -70,7 +71,8 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $questions = question::find($id);
+        return view('question.edit', compact('questions'));
     }
 
     /**
@@ -82,7 +84,12 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $questions = question::find($id);
+        $questions->tag = $request->input('tag');
+        $questions->enunciado = $request->input('enunciado');
+        $questions->answer = $request->input('answer');
+        $questions->save();
+        return view('dashboard');
     }
 
     /**
@@ -91,8 +98,10 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $questions = question::find($id);
+        $questions->delete();
+        return view('dashboard');
     }
 }

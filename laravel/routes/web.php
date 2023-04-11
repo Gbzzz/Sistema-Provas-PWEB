@@ -27,9 +27,13 @@ Route::get('/questions', function () {
     return view('questions/index');
 })->middleware(['auth'])->name('questions');
 
-Route::get('/questions/list', [QuestionController::class, 'show'])->name('list_question');
+Route::get('/questions/list', [QuestionController::class, 'show'])->name('list_questions');
 
-Route::post('/questions/store', [QuestionController::class, 'store'])->name('add_question');
+Route::post('/questions/store', [QuestionController::class, 'store'])->name('add_questions');
+
+Route::put('/questions/update/{id}', [QuestionController::class, 'edit'])->name('edit_questions');
+
+Route::delete('/questions/delete/{id}', [QuestionController::class, 'delete'])->name('delete_questions');
 
 Route::fallback(function()
 {

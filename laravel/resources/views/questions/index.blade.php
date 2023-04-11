@@ -39,7 +39,7 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('add_question') }}" method="POST">
+                                    <form action="{{ route('add_questions') }}" method="POST">
                                         @csrf
                                         <div class="form-group">
                                           <label for="exampleInputEmail1">Tag</label>
@@ -74,7 +74,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 </div>
-                                <form action="{{ route('add_question') }}" method="POST">
+                                <form action="{{ route('add_questions') }}" method="POST">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group">
@@ -137,7 +137,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 </div>
-                                <form action="{{ route('add_question') }}" method="POST">
+                                <form action="{{ route('add_questions') }}" method="POST">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group">
@@ -200,7 +200,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 </div>
-                                <form action="{{ route('add_question') }}" method="POST">
+                                <form action="{{ route('add_questions') }}" method="POST">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group">
