@@ -18,7 +18,7 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('questions')" :active="request()->routeIs('questions')">
-                        {{ __('Questões') }}
+                        {{ __('Cadastrar Questão') }}
                     </x-nav-link>
                 </div>
             </div>

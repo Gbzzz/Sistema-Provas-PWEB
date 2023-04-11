@@ -35,9 +35,20 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $question = Question::create($request->all());
+       $data = $request->validate([
+        'tag' => 'required|string',
+        'enunciado' => 'required|string',
+        'answer' => 'required|string',
+       ]);
 
-        return back();
+       Question::create($data);
+
+       return back()->with('success', 'Questão criada com Sucesso!');
+       
+       
+        // $question = Question::create($request->all());
+
+        // return back();
     }
 
     /**

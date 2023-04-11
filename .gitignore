@@ -2,7 +2,6 @@
 /public/hot
 /public/storage
 /storage/*.key
-/mysql
 laravel/vendor
 .env
 .env.backup

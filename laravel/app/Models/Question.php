@@ -9,10 +9,14 @@ class Question extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['description'];
+    protected $fillable = [
+        'tag',
+        'enunciado',
+        'answer',
+    ];
 
-    public function answers()
-    {
-        return $this->hasMany(Answer::class);
-    }
+    // public function answers()
+    // {
+    //     return $this->hasMany(Answer::class);
+    // }
 }

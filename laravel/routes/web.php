@@ -27,15 +27,9 @@ Route::get('/questions', function () {
     return view('questions/index');
 })->middleware(['auth'])->name('questions');
 
-Route::get('/answers', function () {
-    return view('answers/index');
-})->middleware(['auth'])->name('questions');
+Route::get('/questions/list', [QuestionController::class, 'show'])->name('list_question');
 
 Route::post('/questions/store', [QuestionController::class, 'store'])->name('add_question');
-
-Route::post('/answers/store', [AnswerController::class, 'store'])->name('add_answer');
-
-Route::get('/answers', [AnswerController::class, 'index']);
 
 Route::fallback(function()
 {

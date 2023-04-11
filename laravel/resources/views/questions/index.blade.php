@@ -39,20 +39,26 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
+                                    <form action="{{ route('add_question') }}" method="POST">
+                                        @csrf
+                                        <div class="form-group">
+                                          <label for="exampleInputEmail1">Tag</label>
+                                          <input name="tag" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
+                                        </div>
                                     <form>
                                         <div class="form-group">
                                           <label for="exampleInputEmail1">Enunciado</label>
-                                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="...">
+                                          <input name="enunciado" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                         </div>
                                         <div class="form-group">
                                           <label for="exampleInputPassword1">Resposta</label>
-                                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="...">
+                                          <input name="answer" type="text" class="form-control" id="exampleInputPassword1" placeholder="..." required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <x-button type="button" class="mt" data-dismiss="modal">Fechar</x-button>
+                                            <x-button type="submit" class="mt">Criar Questão</x-button>
                                         </div>
                                       </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <x-button type="button" class="mt" data-dismiss="modal">Close</x-button>
-                                    <x-button type="button" class="mt">Save changes</x-button>
                                 </div>
                             </div>
                             </div>
@@ -68,16 +74,58 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 </div>
-                                <div class="modal-body">
-                                ...
-                                </div>
-                                <div class="modal-footer">
-                                    <x-button type="button" class="mt" data-dismiss="modal">Close</x-button>
-                                    <x-button type="button" class="mt">Save changes</x-button>
-                                </div>
+                                <form action="{{ route('add_question') }}" method="POST">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Tag</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Enunciado</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            A
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                            B
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                            C
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                            D
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios" value="option2">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                            E
+                                            </label>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <x-button type="button" class="mt" data-dismiss="modal">Fechar</x-button>
+                                            <x-button type="submit" class="mt">Criar Questão</x-button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                             </div>
                         </div>
+                        <!-- Modal V/F -->
 
                         <!-- Modal Multipla Escolha -->
                         <div class="modal fade" id="multipla-escolha-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -89,16 +137,58 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 </div>
-                                <div class="modal-body">
-                                ...
-                                </div>
-                                <div class="modal-footer">
-                                    <x-button type="button" class="mt" data-dismiss="modal">Close</x-button>
-                                    <x-button type="button" class="mt">Save changes</x-button>
-                                </div>
+                                <form action="{{ route('add_question') }}" method="POST">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Tag</label>
+                                            <input name="tag" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Enunciado</label>
+                                            <input name="enunciado" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                            A
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                            B
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                            C
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                            D
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                            E
+                                            </label>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <x-button type="button" class="mt" data-dismiss="modal">Fechar</x-button>
+                                            <x-button type="button" class="mt">Criar Questão</x-button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                             </div>
                         </div>
+                         <!-- Modal Multipla Escolha -->
 
                         <!-- Modal com Apenas 1 Correta -->
                         <div class="modal fade" id="uma-correta-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -110,16 +200,59 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 </div>
-                                <div class="modal-body">
-                                ...
-                                </div>
-                                <div class="modal-footer">
-                                    <x-button type="button" class="mt" data-dismiss="modal">Close</x-button>
-                                    <x-button type="button" class="mt">Save changes</x-button>
-                                </div>
+                                <form action="{{ route('add_question') }}" method="POST">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Tag</label>
+                                            <input name="tag" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Enunciado</label>
+                                            <input name="enunciado" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                            <label class="form-check-label" for="exampleRadios1">
+                                            A
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                            B
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                            C
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                            D
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios" value="option2">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                            E
+                                            </label>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <x-button type="button" class="mt" data-dismiss="modal">Fechar</x-button>
+                                            <x-button type="button" class="mt">Criar Questão</x-button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                             </div>
                         </div>
+                        <!-- Modal com Apenas 1 Correta -->
+                        
                     </div>
                 </div>
             </div>
