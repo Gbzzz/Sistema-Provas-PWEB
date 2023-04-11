@@ -23,12 +23,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/cadastrar', function(){
-    return view('user.cadastro');
-})->middleware(['auth']);
-
-Route::post('/cadastrar', [RegisteredUserController::class, 'store'])->middleware(['auth']);
-
 Route::get('/questions', function () {
     return view('questions/index');
 })->middleware(['auth'])->name('questions');
