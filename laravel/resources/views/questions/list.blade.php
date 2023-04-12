@@ -82,7 +82,7 @@
                                 <td>
                                     <form>
                                         <x-button type="button" class="mt" data-toggle="modal" data-target="#aberta-Modal">
-                                            Questão Aberta
+                                            Visualizar
                                         </x-button>
                                     </form>
                                 </td>
