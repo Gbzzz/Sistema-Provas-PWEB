@@ -43,7 +43,7 @@ class QuestionController extends Controller
 
        questions::create($data);
 
-       return back()->with('success', 'Questão criada com Sucesso!');
+       return redirect('/questions');
        
        
         // $question = Question::create($request->all());
@@ -102,6 +102,31 @@ class QuestionController extends Controller
     {
         $questions = questions::find($id);
         $questions->delete();
+        return redirect('/questions/list');
+    }
+
+    public function answer(Request $request){
+        $question = questions::create([
+            'tag'=>$request->input('tag'),
+            'enunciado'=>$request->input('enunciado')
+        ]);
+
+        $answers = $request->input('answer');
+        foreach ($answers as $key => $value) {
+            if(isset($value['correto']))
+                $answers[$key]['correto'] = true;
+        }
+
+        $question->answers()->createMany($answers);
+
         return view('dashboard');
+    }
+
+    public function view($id)
+    {
+        $question = questions::find($id);
+        $question['answers'] = $question->answers;
+
+        dd($question->toArray());
     }
 }

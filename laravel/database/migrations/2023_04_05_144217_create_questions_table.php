@@ -17,7 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->id();
             $table->text('tag');
             $table->text('enunciado');
-            $table->text('answer');
+            $table->text('answer')->nullable();
             $table->timestamps();
         });
     }

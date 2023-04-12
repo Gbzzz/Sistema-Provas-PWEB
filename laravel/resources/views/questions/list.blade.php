@@ -16,7 +16,6 @@
                               <tr>
                                 <th>Id</th>
                                 <th>Tag</th>
-                                <th>Nível de Dificuldade</th>
                                 <th>Enunciado</th>
                                 <th>Resposta</th>
                               </tr>
@@ -28,14 +27,21 @@
                               <tr>
                                 <td>{{$question->id}}</td>
                                 <td>{{$question->tag}}</td>
-                                <td>{{$question->dificuldade}}</td>
                                 <td>{{$question->enunciado}}</td>
                                 <td>{{$question->answer}}</td>
                                 <td>
                                     <form action="/questions/edit/{{$question->id}}" method="POST">
-                                        <button
-                                            type="submit"> Editar
-                                        </button>
+                                        <x-button type="button" class="mt" data-toggle="modal" data-target="#aberta-Modal">
+                                            Editar
+                                        </x-button>
+                                    </form>
+                                </td>
+
+                                <td>
+                                    <form action="/questions/view/{{$question->id}}" method="GET">
+                                        <x-button type="button" class="mt" data-toggle="modal" data-target="#aberta-Modal">
+                                            Ver Questão
+                                        </x-button>
                                     </form>
                                 </td>
     
@@ -43,7 +49,7 @@
                                     <form action="/questions/delete/{{$question->id}}" method="POST">
                                         @csrf
                                         @method('delete')
-                                            <button
+                                            <button class="btn btn-danger"
                                                 type="submit"> Deletar
                                             </button>
                                     </form>

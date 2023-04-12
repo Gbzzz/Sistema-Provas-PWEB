@@ -9,10 +9,13 @@ class Answer extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'descricao',
+        'correto',
+    ];
 
     public function question()
     {
-        return $this->belongsTo(Question::class);
+        return $this->belongsTo(questions::class);
     }
 }

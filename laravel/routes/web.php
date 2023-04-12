@@ -35,6 +35,10 @@ Route::put('/questions/update/{id}', [QuestionController::class, 'edit'])->name(
 
 Route::delete('/questions/delete/{id}', [QuestionController::class, 'delete'])->name('delete_questions');
 
+Route::post('/questions/multiplaescolha', [QuestionController::class, 'answer'])->name('add_multipla');
+
+Route::get('/questions/view/{id}', [QuestionController::class, 'view'])->name('view_question');
+
 Route::fallback(function()
 {
     echo 'Essa rota não existe, <a href="'.url('/').'">clique aqui </a>para ir para página inicial';
