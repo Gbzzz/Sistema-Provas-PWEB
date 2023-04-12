@@ -17,7 +17,6 @@
                                 <th>Id</th>
                                 <th>Tag</th>
                                 <th>Enunciado</th>
-                                <th>Resposta</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -28,7 +27,6 @@
                                 <td>{{$question->id}}</td>
                                 <td>{{$question->tag}}</td>
                                 <td>{{$question->enunciado}}</td>
-                                <td>{{$question->answer}}</td>
                                
                                 <td>
                                     <x-button type="button" class="mt" data-toggle="modal" data-target="#aberta-Modal">
@@ -82,10 +80,10 @@
                                 </td>
 
                                 <td>
-                                    <form action="/questions/view/{{$question->id}}" method="GET">
-                                        <button
-                                            type="submit"> Visualizar
-                                        </button>
+                                    <form>
+                                        <x-button type="button" class="mt" data-toggle="modal" data-target="#aberta-Modal">
+                                            Questão Aberta
+                                        </x-button>
                                     </form>
                                 </td>
     
