@@ -72,7 +72,7 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $questions = questions::find($id);
-        return view('question.edit', compact('questions'));
+        return view('questions.edit', compact('questions'));
     }
 
     /**
@@ -89,7 +89,7 @@ class QuestionController extends Controller
         $questions->enunciado = $request->input('enunciado');
         $questions->answer = $request->input('answer');
         $questions->save();
-        return view('dashboard');
+        return redirect('/questions/list');
     }
 
     /**

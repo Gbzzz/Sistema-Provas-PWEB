@@ -62,6 +62,7 @@
                             </div>
                             </div>
                         </div>
+                        <!-- Modal Aberta -->
 
                         <!-- Modal V/F -->
                         <div class="modal fade" id="v-f-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -136,7 +137,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 </div>
-                                <form action="{{ route('add_questions') }}" method="POST">
+                                <form action="{{ route('add_multipla') }}" method="POST">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group">
@@ -148,39 +149,39 @@
                                             <input name="enunciado" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                            <label class="form-check-label" for="defaultCheck1">
-                                            A
+                                            <input name="answer[0][correto]" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="true" checked>
+                                            <label class="form-check-label" for="exampleRadios1">
+                                                <input name="answer[0][descricao]" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                            <label class="form-check-label" for="defaultCheck1">
-                                            B
+                                            <input name="answer[1][correto]" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="true">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                <input name="answer[1][descricao]" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                            <label class="form-check-label" for="defaultCheck1">
-                                            C
+                                            <input name="answer[2][correto]" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="true">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                <input name="answer[2][descricao]" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                            <label class="form-check-label" for="defaultCheck1">
-                                            D
+                                            <input name="answer[3][correto]" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="true">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                <input name="answer[3][descricao]" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                            <label class="form-check-label" for="defaultCheck1">
-                                            E
+                                            <input name="answer[4][correto]" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios" value="true">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                <input name="answer[4][descricao]" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                             </label>
                                         </div>
 
                                         <div class="modal-footer">
                                             <x-button type="button" class="mt" data-dismiss="modal">Fechar</x-button>
-                                            <x-button type="button" class="mt">Criar Questão</x-button>
+                                            <x-button type="submit" class="mt">Criar Questão</x-button>
                                         </div>
                                     </div>
                                 </form>
@@ -211,33 +212,33 @@
                                             <input name="enunciado" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                            <input name="answer[0][correto]" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="true" checked>
                                             <label class="form-check-label" for="exampleRadios1">
-                                            A
+                                                <input name="answer[0][descricao]" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2">
+                                            <input name="answer[1][correto]" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="true">
                                             <label class="form-check-label" for="exampleRadios2">
-                                            B
+                                                <input name="answer[1][descricao]" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2">
+                                            <input name="answer[2][correto]" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="true">
                                             <label class="form-check-label" for="exampleRadios2">
-                                            C
+                                                <input name="answer[2][descricao]" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2">
+                                            <input name="answer[3][correto]" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="true">
                                             <label class="form-check-label" for="exampleRadios2">
-                                            D
+                                                <input name="answer[3][descricao]" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios" value="option2">
+                                            <input name="answer[4][correto]" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios" value="true">
                                             <label class="form-check-label" for="exampleRadios2">
-                                            E
+                                                <input name="answer[4][descricao]" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                             </label>
                                         </div>
 

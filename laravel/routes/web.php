@@ -31,7 +31,7 @@ Route::get('/questions/list', [QuestionController::class, 'show'])->name('list_q
 
 Route::post('/questions/store', [QuestionController::class, 'store'])->name('add_questions');
 
-Route::put('/questions/update/{id}', [QuestionController::class, 'edit'])->name('edit_questions');
+Route::put('/questions/update/{id}', [QuestionController::class, 'update'])->name('update_questions');
 
 Route::delete('/questions/delete/{id}', [QuestionController::class, 'delete'])->name('delete_questions');
 
