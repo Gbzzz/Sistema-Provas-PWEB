@@ -45,7 +45,6 @@
                                           <label for="exampleInputEmail1">Tag</label>
                                           <input name="tag" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                         </div>
-                                    <form>
                                         <div class="form-group">
                                           <label for="exampleInputEmail1">Enunciado</label>
                                           <input name="enunciado" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>

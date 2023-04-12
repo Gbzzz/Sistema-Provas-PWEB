@@ -16,6 +16,7 @@
                               <tr>
                                 <th>Id</th>
                                 <th>Tag</th>
+                                <th>Nível de Dificuldade</th>
                                 <th>Enunciado</th>
                                 <th>Resposta</th>
                               </tr>
@@ -27,6 +28,7 @@
                               <tr>
                                 <td>{{$question->id}}</td>
                                 <td>{{$question->tag}}</td>
+                                <td>{{$question->dificuldade}}</td>
                                 <td>{{$question->enunciado}}</td>
                                 <td>{{$question->answer}}</td>
                                 <td>

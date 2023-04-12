@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Question;
+use App\Models\questions;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -41,7 +41,7 @@ class QuestionController extends Controller
         'answer' => 'required|string',
        ]);
 
-       Question::create($data);
+       questions::create($data);
 
        return back()->with('success', 'Questão criada com Sucesso!');
        
@@ -59,7 +59,7 @@ class QuestionController extends Controller
      */
     public function show()
     {
-        $questions = question::get();
+        $questions = questions::get();
         return view('questions.list', compact('questions'));
     }
 
@@ -71,7 +71,7 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        $questions = question::find($id);
+        $questions = questions::find($id);
         return view('question.edit', compact('questions'));
     }
 
@@ -84,7 +84,7 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $questions = question::find($id);
+        $questions = questions::find($id);
         $questions->tag = $request->input('tag');
         $questions->enunciado = $request->input('enunciado');
         $questions->answer = $request->input('answer');
@@ -100,7 +100,7 @@ class QuestionController extends Controller
      */
     public function delete($id)
     {
-        $questions = question::find($id);
+        $questions = questions::find($id);
         $questions->delete();
         return view('dashboard');
     }
