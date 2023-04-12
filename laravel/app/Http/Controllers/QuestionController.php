@@ -147,12 +147,12 @@ class QuestionController extends Controller
         $options = $request->option;
         $ids = Option::where('question_id', $request->id)->pluck('id');
 
-        for($i = 0; $i < count($options); $i++) {
-            
-            Option::where('id', $ids[$i])->update(['option' => $options[$i]]);
-        }
-
         if($questions->type == 2) {
+
+            for($i = 0; $i < count($options); $i++) {
+            
+                Option::where('id', $ids[$i])->update(['option' => $options[$i]]);
+            }
 
             Option::where(['question_id'=> $request->id, 'correct' => 1])->update(['correct' => 0]);
             Option::where('id', $request->correct)->update(['correct' => 1]);
@@ -160,6 +160,11 @@ class QuestionController extends Controller
             return redirect('/questions');
 
         } elseif($questions->type == 3) {
+
+            for($i = 0; $i < count($options); $i++) {
+            
+                Option::where('id', $ids[$i])->update(['option' => $options[$i]]);
+            }
 
             $ids = Option::where('question_id', $request->id)->pluck('id')->toArray();
 
@@ -177,6 +182,11 @@ class QuestionController extends Controller
                 }
 
             } else {
+
+                for($i = 0; $i < count($options); $i++) {
+            
+                    Option::where('id', $ids[$i])->update(['option' => $options[$i]]);
+                }
                 foreach($ids as $id)
                 Option::where('id', $id)->update(['correct' => 0]);
             }
@@ -193,6 +203,8 @@ class QuestionController extends Controller
 
             return redirect('/questions');
         }
+
+        return redirect('/questions');
     }
 
     public function destroy($id) {
