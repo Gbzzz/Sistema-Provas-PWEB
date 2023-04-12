@@ -80,10 +80,11 @@
                                 </td>
 
                                 <td>
-                                    <form>
-                                        <x-button type="button" class="mt" data-toggle="modal" data-target="#aberta-Modal">
+                                    <form action="/questions/view/{{$question->id}}" method="GET">
+                                        @csrf
+                                        <button type="submit"> 
                                             Visualizar
-                                        </x-button>
+                                        </button>
                                     </form>
                                 </td>
     
