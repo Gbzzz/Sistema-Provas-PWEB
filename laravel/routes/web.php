@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,27 +10,38 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware(['auth']);
+});
 
-Route::get('/questions', [QuestionController::class, 'index']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::get('/questions/create', [QuestionController::class, 'create']);
+Route::get('/questions', function () {
+    return view('questions/index');
+})->middleware(['auth'])->name('questions');
 
-Route::post('/enviar', [QuestionController::class, 'store']);
+Route::get('/questions/list', [QuestionController::class, 'show'])->name('list_questions');
 
-Route::get('/questions/{id}', [QuestionController::class, 'show']);
+Route::post('/questions/store', [QuestionController::class, 'store'])->name('add_questions');
 
-Route::get('/questions/edit/{id}', [QuestionController::class, 'edit']);
+Route::put('/questions/update/{id}', [QuestionController::class, 'update'])->name('update_questions');
 
-Route::put('/questions/update/{id}', [QuestionController::class, 'update']);
+Route::delete('/questions/delete/{id}', [QuestionController::class, 'delete'])->name('delete_questions');
 
-Route::delete('/questions/delete/{id}', [QuestionController::class, 'destroy']);
+Route::post('/questions/multiplaescolha', [QuestionController::class, 'answer'])->name('add_multipla');
+
+Route::get('/questions/view/{id}', [QuestionController::class, 'view'])->name('view_question');
+
+Route::fallback(function()
+{
+    echo 'Essa rota não existe, <a href="'.url('/').'">clique aqui </a>para ir para página inicial';
+});
 
 require __DIR__.'/auth.php';
