@@ -1,3 +1,8 @@
+table, td, tr, th {
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
 /*
 ! tailwindcss v3.3.1 | MIT License | https://tailwindcss.com
 *//*

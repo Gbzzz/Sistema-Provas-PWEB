@@ -23,21 +23,33 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/questions', function () {
+Route::get('/questions/create', function () {
     return view('questions/index');
-})->middleware(['auth'])->name('questions');
+})->middleware(['auth'])->name('create');
 
-Route::get('/questions/list', [QuestionController::class, 'show'])->name('list_questions');
+Route::get('/questions', [QuestionController::class, 'index'])->name('list_questions');
 
-Route::post('/questions/store', [QuestionController::class, 'store'])->name('add_questions');
+Route::post('/enviar', [QuestionController::class, 'store']);
 
-Route::put('/questions/update/{id}', [QuestionController::class, 'update'])->name('update_questions');
+Route::get('/questions/{id}', [QuestionController::class, 'show']);
 
-Route::delete('/questions/delete/{id}', [QuestionController::class, 'delete'])->name('delete_questions');
+Route::get('/questions/edit/{id}', [QuestionController::class, 'edit']);
 
-Route::post('/questions/multiplaescolha', [QuestionController::class, 'answer'])->name('add_multipla');
+Route::put('/questions/update/{id}', [QuestionController::class, 'update']);
 
-Route::get('/questions/view/{id}', [QuestionController::class, 'view'])->name('view_question');
+Route::delete('/questions/delete/{id}', [QuestionController::class, 'destroy']);
+
+// Route::get('/questions/list', [QuestionController::class, 'show'])->name('list_questions');
+
+// Route::post('/questions/store', [QuestionController::class, 'store'])->name('add_questions');
+
+// Route::put('/questions/update/{id}', [QuestionController::class, 'update'])->name('update_questions');
+
+// Route::delete('/questions/delete/{id}', [QuestionController::class, 'delete'])->name('delete_questions');
+
+// Route::post('/questions/multiplaescolha', [QuestionController::class, 'answer'])->name('add_multipla');
+
+// Route::get('/questions/view/{id}', [QuestionController::class, 'view'])->name('view_question');
 
 Route::fallback(function()
 {
