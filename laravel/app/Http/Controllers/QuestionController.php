@@ -14,7 +14,11 @@ class QuestionController extends Controller
         $questions = Question::all();
         $options = Option::all();
 
+<<<<<<< HEAD
         return view('questions.list', ['questions' => $questions, 'options' => $options]);
+=======
+        return view('questions', ['questions' => $questions, 'options' => $options]);
+>>>>>>> a9a92fc312bfe772d90d7665270b3701c5a9ab18
     }
 
     public function create() {
@@ -128,7 +132,11 @@ class QuestionController extends Controller
 
         $options = Option::all()->where('question_id', $question->id);
 
+<<<<<<< HEAD
         return view('questions.show', ['question' =>$question, 'options' => $options]);
+=======
+        return view('/show', ['question' =>$question, 'options' => $options]);
+>>>>>>> a9a92fc312bfe772d90d7665270b3701c5a9ab18
     }
 
     public function edit($id) {
@@ -136,7 +144,11 @@ class QuestionController extends Controller
         $questions = Question::findOrFail($id);
         $options = Option::all()->where('question_id', $id);
         
+<<<<<<< HEAD
         return view('questions.edit', ['questions' => $questions, 'options' => $options]);
+=======
+        return view('edit', ['questions' => $questions, 'options' => $options]);
+>>>>>>> a9a92fc312bfe772d90d7665270b3701c5a9ab18
     }
 
     public function update(Request $request) {
@@ -147,6 +159,7 @@ class QuestionController extends Controller
         $options = $request->option;
         $ids = Option::where('question_id', $request->id)->pluck('id');
 
+<<<<<<< HEAD
         for($i = 0; $i < count($options); $i++) {
             
             Option::where('id', $ids[$i])->update(['option' => $options[$i]]);
@@ -193,6 +206,66 @@ class QuestionController extends Controller
 
             return redirect('/questions');
         }
+=======
+        if($questions->type == 2) {
+
+            for($i = 0; $i < count($options); $i++) {
+            
+                Option::where('id', $ids[$i])->update(['option' => $options[$i]]);
+            }
+
+            Option::where(['question_id'=> $request->id, 'correct' => 1])->update(['correct' => 0]);
+            Option::where('id', $request->correct)->update(['correct' => 1]);
+            
+            return redirect('/questions');
+
+        } elseif($questions->type == 3) {
+
+            for($i = 0; $i < count($options); $i++) {
+            
+                Option::where('id', $ids[$i])->update(['option' => $options[$i]]);
+            }
+
+            $ids = Option::where('question_id', $request->id)->pluck('id')->toArray();
+
+            $corrects = $request->correct;
+
+            if($corrects != null) {
+                for($i=0;$i<count($corrects);$i++) {
+                    Option::where('id', $corrects[$i])->update(['correct' => 1]);
+                }
+
+                $unchecked = array_diff($ids, $corrects);
+
+                foreach($unchecked as $uncheck) {
+                    Option::where('id', $uncheck)->update(['correct' => 0]);
+                }
+
+            } else {
+
+                for($i = 0; $i < count($options); $i++) {
+            
+                    Option::where('id', $ids[$i])->update(['option' => $options[$i]]);
+                }
+                foreach($ids as $id)
+                Option::where('id', $id)->update(['correct' => 0]);
+            }
+
+            return redirect('/questions');
+
+        } elseif($questions->type == 4) {
+
+            $ids = Option::where('question_id', $request->id)->pluck('id')->toArray();
+
+            foreach($ids as $id) {
+                Option::where('id', $id)->update(['correct' => $request->correct[$id]]);
+            }
+
+            return redirect('/questions');
+        }
+
+        return redirect('/questions');
+>>>>>>> a9a92fc312bfe772d90d7665270b3701c5a9ab18
     }
 
     public function destroy($id) {

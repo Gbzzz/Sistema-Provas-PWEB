@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,19 +9,18 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware(['auth']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/questions', [QuestionController::class, 'index']);
 
+<<<<<<< HEAD
 Route::get('/questions/create', function () {
     return view('questions/index');
 })->middleware(['auth'])->name('create');
@@ -57,3 +55,18 @@ Route::fallback(function()
 });
 
 require __DIR__.'/auth.php';
+=======
+Route::get('/questions/create', [QuestionController::class, 'create']);
+
+Route::post('/enviar', [QuestionController::class, 'store']);
+
+Route::get('/questions/{id}', [QuestionController::class, 'show']);
+
+Route::get('/questions/edit/{id}', [QuestionController::class, 'edit']);
+
+Route::put('/questions/update/{id}', [QuestionController::class, 'update']);
+
+Route::delete('/questions/delete/{id}', [QuestionController::class, 'destroy']);
+
+require __DIR__.'/auth.php';
+>>>>>>> a9a92fc312bfe772d90d7665270b3701c5a9ab18
