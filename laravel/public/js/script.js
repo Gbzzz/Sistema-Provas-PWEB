@@ -4,17 +4,11 @@
 
 type.onchange = function(){
 
-<<<<<<< HEAD:laravel/public/js/app.js
-  var bts1 = document.getElementById("botoes_fechada_1");
-  var bts2 = document.getElementById("botoes_fechada_2");
-  var bts3 = document.getElementById("botoes_vf");
-=======
   var bt = document.getElementById("salvar");
   var bts1 = document.getElementById("botoes_fechada_1");
   var bts2 = document.getElementById("botoes_fechada_2");
   var bts3 = document.getElementById("botoes_vf");
   bt.style.display = 'block';
->>>>>>> a9a92fc312bfe772d90d7665270b3701c5a9ab18:laravel/public/js/script.js
 
   var type = document.getElementById("type");
   var aberta = document.getElementById("questao-aberta");
@@ -152,10 +146,6 @@ function adicionarAlternativaVf() {
 }
 
 // FIM 3
-<<<<<<< HEAD:laravel/public/js/app.js
-
-=======
->>>>>>> a9a92fc312bfe772d90d7665270b3701c5a9ab18:laravel/public/js/script.js
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
