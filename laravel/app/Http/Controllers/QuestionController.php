@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\questions;
+use App\Models\Question;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -14,7 +15,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -41,11 +42,11 @@ class QuestionController extends Controller
         'answer' => 'required|string',
        ]);
 
-       questions::create($data);
+       Question::create($data);
 
        return redirect('/questions');
-       
-       
+
+
         // $question = Question::create($request->all());
 
         // return back();
@@ -59,7 +60,7 @@ class QuestionController extends Controller
      */
     public function show()
     {
-        $questions = questions::get();
+        $questions = Question::get();
         return view('questions.list', compact('questions'));
     }
 
@@ -69,10 +70,12 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
-        $questions = questions::find($id);
-        return view('questions.edit', compact('questions'));
+        $question = Question::find($id);
+        $question['answers'] = $question->answers;
+        return view('questions.edit', compact('question'));
     }
 
     /**
@@ -82,14 +85,38 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateOpen(Request $request, $id)
     {
-        $questions = questions::find($id);
+        $questions = Question::find($id);
         $questions->tag = $request->input('tag');
         $questions->enunciado = $request->input('enunciado');
         $questions->answer = $request->input('answer');
         $questions->save();
         return redirect('/questions/list');
+    }
+
+    public function updateMark(Request $request, $id)
+    {
+        $question = Question::findOrFail($id);
+
+        // Atualizando os dados da tabela principal
+        $question->tag = $request->input('tag');
+        $question->enunciado = $request->input('enunciado');
+        $question->save();
+
+        // Atualizando os dados da tabela estrangeira
+        if ($question->answer) {
+            $answer = $question->answer;
+        } else {
+            $answer = new Answer;
+            $answer->question_id = $question->id;
+        }
+
+        $answer->descricao = $request->input('answer')[0]['descricao'];
+        $answer->correto = $request->input('answer')[0]['correto'];
+        $answer->save();
+
+        return redirect()->route('questions.show', $question->id);
     }
 
     /**
@@ -100,13 +127,13 @@ class QuestionController extends Controller
      */
     public function delete($id)
     {
-        $questions = questions::find($id);
+        $questions = Question::find($id);
         $questions->delete();
         return redirect('/questions/list');
     }
 
-    public function answer(Request $request){
-        $question = questions::create([
+    public function answerQuestionMark(Request $request){
+        $question = Question::create([
             'tag'=>$request->input('tag'),
             'enunciado'=>$request->input('enunciado')
         ]);
@@ -124,7 +151,7 @@ class QuestionController extends Controller
 
     public function view($id)
     {
-        $question = questions::find($id);
+        $question = Question::find($id);
         $question['answers'] = $question->answers;
 
         dd($question->toArray());

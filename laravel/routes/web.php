@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,19 +28,23 @@ Route::get('/questions', function () {
 
 Route::get('/questions/list', [QuestionController::class, 'show'])->name('list_questions');
 
-Route::post('/questions/store', [QuestionController::class, 'store'])->name('add_questions');
+Route::post('/questions/addOpen', [QuestionController::class, 'store'])->name('add_questionOpen');
 
-Route::put('/questions/update/{id}', [QuestionController::class, 'update'])->name('update_questions');
+Route::get('/questions/edit/{$id}', [QuestionController::class, 'edit']);
 
-Route::delete('/questions/delete/{id}', [QuestionController::class, 'delete'])->name('delete_questions');
+Route::put('/questions/updateOpen/{id}', [QuestionController::class, 'updateOpen'])->name('update_questionOpen');
 
-Route::post('/questions/multiplaescolha', [QuestionController::class, 'answer'])->name('add_multipla');
+Route::put('/questions/updateMark/{id}', [QuestionController::class, 'updateMark'])->name('update_questionMark');
+
+Route::post('/questions/addMark', [QuestionController::class, 'answerQuestionMark'])->name('add_questionMark');
 
 Route::get('/questions/view/{id}', [QuestionController::class, 'view'])->name('view_question');
 
+Route::delete('/questions/delete/{id}', [QuestionController::class, 'delete'])->name('delete_questions');
+
 Route::fallback(function()
 {
-    echo 'Essa rota não existe, <a href="'.url('/').'">clique aqui </a>para ir para página inicial';
+    echo 'Essa rota não existe, <a href="'.url('/dashboard').'">clique aqui </a>para ir para página inicial';
 });
 
 require __DIR__.'/auth.php';
