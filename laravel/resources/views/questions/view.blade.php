@@ -17,47 +17,49 @@
                                 <th>Id</th>
                                 <th>Tag</th>
                                 <th>Enunciado</th>
+                                <th>Resposta</th>
                               </tr>
                             </thead>
                             <tbody>
-
-                            @foreach($questions as $question)
 
                               <tr>
                                 <td>{{$question->id}}</td>
                                 <td>{{$question->tag}}</td>
                                 <td>{{$question->enunciado}}</td>
+                                @if($question->answer)
+                                    <td>{{$question->answer}}</td>
+                                @endif
 
                                 <td>
-                                    <form action="{{ route('edit_question', ['id' => $question->id]) }}" method="GET">
-                                        @csrf
-                                        <button type="submit">
-                                            Editar
-                                        </button>
-                                    </form>
+                                @if($question->answer == null)
+                                    @php
+                                        $letras = ['A', 'B', 'C', 'D', 'E'];
+                                    @endphp
+
+                                    @foreach($question->answers as $index => $answer)
+                                        <div>
+                                            <label>Letra {{ $letras[$index] }}</label>
+                                            <input name="descricao" type="text" class="form-control" value="{{ $answer->descricao }}" id="box">
+                                        </div>
+                                        <br>
+                                        <div>
+                                            <label>Correto = 1, Errado = 0</label>
+                                            <input name="correto" type="text" class="form-control" value="{{ $answer->correto }}" id="box">
+                                        </div>
+                                        <br>
+                                    @endforeach
+                                @endif
                                 </td>
 
                                 <td>
-                                    <form action="/questions/view/{{$question->id}}" method="GET">
+                                    <form action="/questions/list" method="GET">
                                         @csrf
-                                        <button type="submit">
-                                            Visualizar
-                                        </button>
-                                    </form>
-                                </td>
-
-                                <td>
-                                    <form action="/questions/delete/{{$question->id}}" method="POST">
-                                        @csrf
-                                        @method('delete')
                                             <button
-                                                type="submit"> Deletar
+                                                type="submit"> Voltar
                                             </button>
                                     </form>
                                 </td>
-
                             </tr>
-                        @endforeach
                         </tbody>
                     </table>
 

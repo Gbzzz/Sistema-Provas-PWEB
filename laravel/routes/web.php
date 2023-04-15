@@ -26,17 +26,17 @@ Route::get('/questions', function () {
     return view('questions/index');
 })->middleware(['auth'])->name('questions');
 
-Route::get('/questions/list', [QuestionController::class, 'show'])->name('list_questions');
+Route::get('/questions/list', [QuestionController::class, 'list'])->name('list_questions');
 
-Route::post('/questions/addOpen', [QuestionController::class, 'store'])->name('add_questionOpen');
+Route::post('/questions/addOpen', [QuestionController::class, 'storeOpen'])->name('add_questionOpen');
 
-Route::get('/questions/edit/{$id}', [QuestionController::class, 'edit']);
+Route::post('/questions/addMark', [QuestionController::class, 'storeMark'])->name('add_questionMark');
 
-Route::put('/questions/updateOpen/{id}', [QuestionController::class, 'updateOpen'])->name('update_questionOpen');
+Route::get('/questions/edit/{id}', [QuestionController::class, 'edit'])->name('edit_question');
 
-Route::put('/questions/updateMark/{id}', [QuestionController::class, 'updateMark'])->name('update_questionMark');
+Route::put('/questions/updateOpen/{id}', [QuestionController::class, 'updateQuestionOpen'])->name('update_questionOpen');
 
-Route::post('/questions/addMark', [QuestionController::class, 'answerQuestionMark'])->name('add_questionMark');
+Route::put('/questions/updateMark/{id}', [QuestionController::class, 'updateQuestionMark'])->name('update_questionMark');
 
 Route::get('/questions/view/{id}', [QuestionController::class, 'view'])->name('view_question');
 

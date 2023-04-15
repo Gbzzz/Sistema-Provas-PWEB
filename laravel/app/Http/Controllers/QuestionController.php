@@ -8,33 +8,34 @@ use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function storeMark(Request $request){
+        $question = Question::create([
+            'tag'=>$request->input('tag'),
+            'enunciado'=>$request->input('enunciado')
+        ]);
+
+        $answers = $request->input('answer');
+        foreach ($answers as $key => $value) {
+            if(isset($value['correto']))
+                $answers[$key]['correto'] = true;
+        }
+
+        $question->answers()->createMany($answers);
+
+        return view('dashboard');
+    }
+
+    public function storeOpen(Request $request)
     {
        $data = $request->validate([
         'tag' => 'required|string',
@@ -52,40 +53,20 @@ class QuestionController extends Controller
         // return back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
+    public function list()
     {
         $questions = Question::get();
         return view('questions.list', compact('questions'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
     public function edit($id)
     {
         $question = Question::find($id);
-        $question['answers'] = $question->answers;
+        $question->answers_array = $question->answers;
         return view('questions.edit', compact('question'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function updateOpen(Request $request, $id)
+    public function updateQuestionOpen(Request $request, $id)
     {
         $questions = Question::find($id);
         $questions->tag = $request->input('tag');
@@ -95,7 +76,7 @@ class QuestionController extends Controller
         return redirect('/questions/list');
     }
 
-    public function updateMark(Request $request, $id)
+    public function updateQuestionMark(Request $request, $id)
     {
         $question = Question::findOrFail($id);
 
@@ -105,26 +86,22 @@ class QuestionController extends Controller
         $question->save();
 
         // Atualizando os dados da tabela estrangeira
-        if ($question->answer) {
-            $answer = $question->answer;
-        } else {
-            $answer = new Answer;
-            $answer->question_id = $question->id;
+        $answersData = $request->input('respostas');
+        if (isset($answersData)) {
+            foreach ($question->answers as $index => $answer) {
+                $answerData = $answersData[$index];
+                $answer->descricao = $answerData['descricao'];
+                $answer->correto = $answerData['correto'];
+                $answer->save();
+            }
         }
 
-        $answer->descricao = $request->input('answer')[0]['descricao'];
-        $answer->correto = $request->input('answer')[0]['correto'];
-        $answer->save();
-
-        return redirect()->route('questions.show', $question->id);
+        return redirect('/questions/list');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
+
     public function delete($id)
     {
         $questions = Question::find($id);
@@ -132,28 +109,12 @@ class QuestionController extends Controller
         return redirect('/questions/list');
     }
 
-    public function answerQuestionMark(Request $request){
-        $question = Question::create([
-            'tag'=>$request->input('tag'),
-            'enunciado'=>$request->input('enunciado')
-        ]);
-
-        $answers = $request->input('answer');
-        foreach ($answers as $key => $value) {
-            if(isset($value['correto']))
-                $answers[$key]['correto'] = true;
-        }
-
-        $question->answers()->createMany($answers);
-
-        return view('dashboard');
-    }
-
     public function view($id)
     {
         $question = Question::find($id);
         $question['answers'] = $question->answers;
 
-        dd($question->toArray());
+        // dd($question->toArray());
+        return view('questions.view', compact('question'));
     }
 }

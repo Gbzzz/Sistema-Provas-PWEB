@@ -261,6 +261,7 @@
 
 
 </x-app-layout>
+
 <script>
     const radiosOnlyOne = document.getElementsByClassName('only-one');
 
