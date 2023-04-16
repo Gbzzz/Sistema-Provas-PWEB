@@ -99,9 +99,6 @@ class QuestionController extends Controller
         return redirect('/questions/list');
     }
 
-
-
-
     public function delete($id)
     {
         $questions = Question::find($id);

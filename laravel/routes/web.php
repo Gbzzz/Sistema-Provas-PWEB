@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +43,10 @@ Route::put('/questions/updateMark/{id}', [QuestionController::class, 'updateQues
 Route::get('/questions/view/{id}', [QuestionController::class, 'view'])->name('view_question');
 
 Route::delete('/questions/delete/{id}', [QuestionController::class, 'delete'])->name('delete_questions');
+
+Route::get('registrar', [RegisteredUserController::class, 'index'])->middleware('admin');
+
+Route::post('registrar', [RegisteredUserController::class, 'create'])->middleware('admin');
 
 Route::fallback(function()
 {
