@@ -62,7 +62,8 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $question = Question::find($id);
-        $question->answers_array = $question->answers;
+        $question->answers;
+        //dd($question->toArray());
         return view('questions.edit', compact('question'));
     }
 
@@ -79,27 +80,22 @@ class QuestionController extends Controller
     public function updateQuestionMark(Request $request, $id)
     {
     
-    // dd($request->all());
-    $question = Question::findOrFail($id);
+        //dd($request->all());
+        $question = Question::findOrFail($id);
 
-    // Atualizando os dados da tabela principal
-    $question->tag = $request->input('tag');
-    $question->enunciado = $request->input('enunciado');
-    $question->save();
+        // Atualizando os dados da tabela principal
+        $question->tag = $request->input('tag');
+        $question->enunciado = $request->input('enunciado');
+        $question->save();
 
-    $answers = $request->input('answers');
+        $answers = $request->input('answers');
 
-    foreach ($answers as $answerId => $answerData) {
-        $answer = Answer::where('question_id', $id)
-                    ->where('id', $answerId)
-                    ->first();
-
-        if ($answer) {
+        foreach ($answers as  $answerData) {
+            $answer = Answer::findOrFail($answerData['id']);
             // Atualiza os campos de descrição e correto na tabela de respostas
             $answer->descricao = $answerData['descricao'];
-            $answer->correto = $answerData['correto'];
+            $answer->correto = isset($answerData['correto']) ? $answerData['correto'] : 0;
             $answer->save();
-            }
         }
 
         return redirect('/questions/list');

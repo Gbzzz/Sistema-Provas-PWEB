@@ -1,3 +1,8 @@
+<style>
+    input[type='checkbox']{
+        color: #28a745;
+    }
+</style>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -62,11 +67,16 @@
                         @foreach($question->answers as $index => $answer)
                             <div>
                                 <label>Letra {{ $letras[$index] }}</label>
-                                <input name="answers[{{ $index }}][descricao]" type="text" class="form-control" value="{{ $answer->descricao }}" id="box">
                             </div>
-                            <div>
-                                <label>Correto = 1, Errado = 0</label>
-                                <input name="answers[{{ $index }}][correto]" type="text" class="form-control" value="{{ $answer->correto }}" id="box">
+                            <div class="form-group row">
+                                <div class="col-sm-1">
+                                    <input type="hidden" name="answers[{{ $index }}][id]" value="{{$answer->id}}" />
+                                    <input type="checkbox" name="answers[{{ $index }}][correto]" value="1" {{$answer->correto ? 'checked' : ''}}/>
+                                </div>
+                                <!-- <input name="answers[{{ $index }}][correto]" type="text" class="form-control" value="{{ $answer->correto }}" id="box"> -->
+                                <div class="col-sm-11">
+                                    <input name="answers[{{ $index }}][descricao]" type="text" class="form-control" value="{{ $answer->descricao }}" id="box">
+                                </div>
                             </div>
                             <br>
                         @endforeach
