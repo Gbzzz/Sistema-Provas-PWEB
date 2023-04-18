@@ -78,6 +78,8 @@ class QuestionController extends Controller
 
     public function updateQuestionMark(Request $request, $id)
     {
+    
+    // dd($request->all());
     $question = Question::findOrFail($id);
 
     // Atualizando os dados da tabela principal
