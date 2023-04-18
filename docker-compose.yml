@@ -30,7 +30,7 @@ services:
       - traefik.enable=true
       - traefik.network=traefik-public
       - traefik.http.routers.portainer-rtr.entrypoints=websecure
-      - traefik.http.routers.portainer-rtr.rule=Host(`portainer.neveroffshop.com`)
+      - traefik.http.routers.portainer-rtr.rule=Host(`portainer-test.testsystem.tech`)
       - traefik.http.routers.portainer-rtr.tls=true
       - traefik.http.routers.portainer-rtr.tls.certresolver=letsencrypt
       - traefik.http.services.portainer-svc.loadbalancer.server.port=9000
@@ -61,11 +61,11 @@ services:
 #        - traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true
       # Uses the environment variable DOMAIN
       - traefik.http.routers.traefik-rtr.entrypoints=websecure
-      - traefik.http.routers.traefik-rtr.rule=Host(`traefik.neveroffshop.com`)
+      - traefik.http.routers.traefik-rtr.rule=Host(`traefik-test.testsystem.tech`)
       - traefik.http.routers.traefik-rtr.service=api@internal
       - traefik.http.routers.traefik-rtr.tls=true
       - traefik.http.routers.traefik-rtr.tls.certresolver=letsencrypt
-      - traefik.http.routers.traefik-rtr.tls.domains[0].main=neveroffshop.com
+      - traefik.http.routers.traefik-rtr.tls.domains[0].main=testsystem.tech
       # Enable HTTP Basic auth, using the middleware created above
       - traefik.http.routers.traefik-rtr.middlewares=basic-auth@file
       # Define the port inside of the Docker service to use
@@ -140,7 +140,7 @@ services:
       #definição da porta de entrada do traefik proxy
       - traefik.http.routers.laravel-rtr.entrypoints=websecure
       #definição da rota via traefik proxy
-      - traefik.http.routers.laravel-rtr.rule=Host(`laravel.neveroffshop.com`)
+      - traefik.http.routers.laravel-rtr.rule=Host(`laravel-test.testsystem.tech`)
       - traefik.http.routers.laravel-rtr.tls=true
       - traefik.http.routers.laravel-rtr.tls.certresolver=letsencrypt
       #definição do serviço via traefik proxy
@@ -185,7 +185,7 @@ services:
       - traefik.docker.network=traefik-public
       ## HTTP Routers
       - traefik.http.routers.phpmyadmin-rtr.entrypoints=websecure
-      - traefik.http.routers.phpmyadmin-rtr.rule=Host(`phpmyadmin.neveroffshop.com`)
+      - traefik.http.routers.phpmyadmin-rtr.rule=Host(`phpmyadmin-test.testsystem.tech`)
       - traefik.http.routers.phpmyadmin-rtr.tls=true
       - traefik.http.routers.phpmyadmin-rtr.tls.certresolver=letsencrypt
       ## HTTP Services

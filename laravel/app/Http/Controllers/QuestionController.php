@@ -78,26 +78,35 @@ class QuestionController extends Controller
 
     public function updateQuestionMark(Request $request, $id)
     {
-        $question = Question::findOrFail($id);
+    $question = Question::findOrFail($id);
 
-        // Atualizando os dados da tabela principal
-        $question->tag = $request->input('tag');
-        $question->enunciado = $request->input('enunciado');
-        $question->save();
+    // Atualizando os dados da tabela principal
+    $question->tag = $request->input('tag');
+    $question->enunciado = $request->input('enunciado');
+    $question->save();
 
-        // Atualizando os dados da tabela estrangeira
-        $answersData = $request->input('respostas');
-        if (isset($answersData)) {
-            foreach ($question->answers as $index => $answer) {
-                $answerData = $answersData[$index];
-                $answer->descricao = $answerData['descricao'];
-                $answer->correto = $answerData['correto'];
-                $answer->save();
+    $answers = $request->input('answers');
+
+    foreach ($answers as $answerId => $answerData) {
+        $answer = Answer::where('question_id', $id)
+                    ->where('id', $answerId)
+                    ->first();
+
+        if ($answer) {
+            // Atualiza os campos de descrição e correto na tabela de respostas
+            $answer->descricao = $answerData['descricao'];
+            $answer->correto = $answerData['correto'];
+            $answer->save();
             }
         }
 
         return redirect('/questions/list');
     }
+
+
+
+
+
 
     public function delete($id)
     {
