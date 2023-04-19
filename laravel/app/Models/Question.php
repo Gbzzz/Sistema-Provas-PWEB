@@ -13,6 +13,7 @@ class Question extends Model
         'tag',
         'enunciado',
         'answer',
+        'tipoQuestao',
     ];
 
      public function answers()

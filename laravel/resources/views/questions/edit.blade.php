@@ -73,7 +73,6 @@
                                     <input type="hidden" name="answers[{{ $index }}][id]" value="{{$answer->id}}" />
                                     <input type="checkbox" name="answers[{{ $index }}][correto]" value="1" {{$answer->correto ? 'checked' : ''}}/>
                                 </div>
-                                <!-- <input name="answers[{{ $index }}][correto]" type="text" class="form-control" value="{{ $answer->correto }}" id="box"> -->
                                 <div class="col-sm-11">
                                     <input name="answers[{{ $index }}][descricao]" type="text" class="form-control" value="{{ $answer->descricao }}" id="box">
                                 </div>

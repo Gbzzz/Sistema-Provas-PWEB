@@ -18,6 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->text('tag');
             $table->text('enunciado');
             $table->text('answer')->nullable();
+            $table->integer('tipoQuestao');
             $table->timestamps();
         });
     }

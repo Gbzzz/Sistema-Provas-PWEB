@@ -21,7 +21,8 @@ class QuestionController extends Controller
     public function storeMark(Request $request){
         $question = Question::create([
             'tag'=>$request->input('tag'),
-            'enunciado'=>$request->input('enunciado')
+            'enunciado'=>$request->input('enunciado'),
+            'tipoQuestao'=>$request->input('tipoQuestao'),
         ]);
 
         $answers = $request->input('answer');
@@ -41,6 +42,7 @@ class QuestionController extends Controller
         'tag' => 'required|string',
         'enunciado' => 'required|string',
         'answer' => 'required|string',
+        'tipoQuestao' => 'required|integer',
        ]);
 
        Question::create($data);
@@ -86,6 +88,7 @@ class QuestionController extends Controller
         // Atualizando os dados da tabela principal
         $question->tag = $request->input('tag');
         $question->enunciado = $request->input('enunciado');
+        $question->enunciado = $request->input('tipoQuestao');
         $question->save();
 
         $answers = $request->input('answers');

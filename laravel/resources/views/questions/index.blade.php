@@ -53,6 +53,9 @@
                                           <label for="exampleInputPassword1">Resposta</label>
                                           <input name="answer" type="text" class="form-control" id="exampleInputPassword1" placeholder="..." required>
                                         </div>
+
+                                        <input type="hidden" name="tipoQuestao" value="1">
+
                                         <div class="modal-footer">
                                             <x-button type="button" class="mt" data-dismiss="modal">Fechar</x-button>
                                             <x-button type="submit" class="mt">Criar Questão</x-button>
@@ -115,6 +118,8 @@
                                                 <input name="answer[4][descricao]" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                             </label>
                                         </div>
+
+                                        <input type="hidden" name="tipoQuestao" value="2">
 
                                         <div class="modal-footer">
                                             <x-button type="button" class="mt" data-dismiss="modal">Fechar</x-button>
@@ -179,6 +184,8 @@
                                             </label>
                                         </div>
 
+                                        <input type="hidden" name="tipoQuestao" value="3">
+
                                         <div class="modal-footer">
                                             <x-button type="button" class="mt" data-dismiss="modal">Fechar</x-button>
                                             <x-button type="submit" class="mt">Criar Questão</x-button>
@@ -241,6 +248,8 @@
                                                 <input name="answer[4][descricao]" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                             </label>
                                         </div>
+
+                                        <input type="hidden" name="tipoQuestao" value="4">
 
                                         <div class="modal-footer">
                                             <x-button type="button" class="mt" data-dismiss="modal">Fechar</x-button>

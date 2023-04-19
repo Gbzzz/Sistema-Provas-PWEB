@@ -1,3 +1,8 @@
+<style>
+    input[type='checkbox']{
+        color: #28a745;
+    }
+</style>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -11,57 +16,66 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="border border-gray-200 px-4 py-2">
 
-                        <table class="table">
-                            <thead>
-                              <tr>
-                                <th>Id</th>
-                                <th>Tag</th>
-                                <th>Enunciado</th>
-                                <th>Resposta</th>
-                              </tr>
-                            </thead>
-                            <tbody>
+                    @if($question->answer)
+                        <div class="form-group">
+                            <label>Tag</label>
+                            <input name="tag" type="text" class="form-control" value="{{ $question->tag }}" id="box">
+                        </div>
 
-                              <tr>
-                                <td>{{$question->id}}</td>
-                                <td>{{$question->tag}}</td>
-                                <td>{{$question->enunciado}}</td>
-                                @if($question->answer)
-                                    <td>{{$question->answer}}</td>
-                                @endif
+                        <div>
+                        <label>Enunciado</label>
+                        <input name="enunciado" type="text" class="form-control" value="{{ $question->enunciado }}" id="box">
+                    </div>
 
-                                <td>
-                                @if($question->answer == null)
-                                    @php
-                                        $letras = ['A', 'B', 'C', 'D', 'E'];
-                                    @endphp
 
-                                    @foreach($question->answers as $index => $answer)
-                                        <div>
-                                            <label>Letra {{ $letras[$index] }}</label>
-                                            <input name="descricao" type="text" class="form-control" value="{{ $answer->descricao }}" id="box">
-                                        </div>
-                                        <br>
-                                        <div>
-                                            <label>Correto = 1, Errado = 0</label>
-                                            <input name="correto" type="text" class="form-control" value="{{ $answer->correto }}" id="box">
-                                        </div>
-                                        <br>
-                                    @endforeach
-                                @endif
-                                </td>
+                        <br>
+                        <div>
+                            <label>Resposta</label>
+                            <input name="answer" type="text" class="form-control" value="{{ $question->answer }}" id="box">
+                        </div>
+                        <br>
 
-                                <td>
-                                    <form action="/questions/list" method="GET">
-                                        @csrf
-                                            <button
-                                                type="submit"> Voltar
-                                            </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        @else
+
+                        <div class="form-group">
+                            <label>Tag</label>
+                            <input name="tag" type="text" class="form-control" value="{{ $question->tag }}" id="box">
+                        </div>
+
+                        <div>
+                            <label>Enunciado</label>
+                            <input name="enunciado" type="text" class="form-control" value="{{ $question->enunciado }}" id="box">
+                        </div>
+
+                        <br>
+
+                        @php
+                            $letras = ['A', 'B', 'C', 'D', 'E'];
+                        @endphp
+
+                        @foreach($question->answers as $index => $answer)
+                            <div>
+                                <label>Letra {{ $letras[$index] }}</label>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-1">
+                                    <input type="hidden" name="answers[{{ $index }}][id]" value="{{$answer->id}}" />
+                                    <input type="checkbox" name="answers[{{ $index }}][correto]" value="1" {{$answer->correto ? 'checked' : ''}} disabled/>
+                                </div>
+                                <div class="col-sm-11">
+                                    <input name="answers[{{ $index }}][descricao]" type="text" class="form-control" value="{{ $answer->descricao }}" id="box">
+                                </div>
+                            </div>
+                            <br>
+                        @endforeach
+
+                        @endif
+
+                        <form action="{{ route('list_questions') }}">
+                            <button type="submit" class="mt-2">
+                                Voltar
+                            </button>
+                        </form>
 
                     </div>
                 </div>
