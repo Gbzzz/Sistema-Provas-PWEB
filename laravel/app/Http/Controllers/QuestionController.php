@@ -88,7 +88,6 @@ class QuestionController extends Controller
         // Atualizando os dados da tabela principal
         $question->tag = $request->input('tag');
         $question->enunciado = $request->input('enunciado');
-        $question->enunciado = $request->input('tipoQuestao');
         $question->save();
 
         $answers = $request->input('answers');

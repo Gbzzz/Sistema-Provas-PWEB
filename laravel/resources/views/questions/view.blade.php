@@ -19,19 +19,19 @@
                     @if($question->answer)
                         <div class="form-group">
                             <label>Tag</label>
-                            <input name="tag" type="text" class="form-control" value="{{ $question->tag }}" id="box">
+                            <input name="tag" type="text" class="form-control" value="{{ $question->tag }}" id="box" disabled>
                         </div>
 
                         <div>
                         <label>Enunciado</label>
-                        <input name="enunciado" type="text" class="form-control" value="{{ $question->enunciado }}" id="box">
+                        <input name="enunciado" type="text" class="form-control" value="{{ $question->enunciado }}" id="box" disabled>
                     </div>
 
 
                         <br>
                         <div>
                             <label>Resposta</label>
-                            <input name="answer" type="text" class="form-control" value="{{ $question->answer }}" id="box">
+                            <input name="answer" type="text" class="form-control" value="{{ $question->answer }}" id="box" disabled>
                         </div>
                         <br>
 
@@ -39,12 +39,12 @@
 
                         <div class="form-group">
                             <label>Tag</label>
-                            <input name="tag" type="text" class="form-control" value="{{ $question->tag }}" id="box">
+                            <input name="tag" type="text" class="form-control" value="{{ $question->tag }}" id="box" disabled>
                         </div>
 
                         <div>
                             <label>Enunciado</label>
-                            <input name="enunciado" type="text" class="form-control" value="{{ $question->enunciado }}" id="box">
+                            <input name="enunciado" type="text" class="form-control" value="{{ $question->enunciado }}" id="box" disabled>
                         </div>
 
                         <br>
@@ -63,7 +63,7 @@
                                     <input type="checkbox" name="answers[{{ $index }}][correto]" value="1" {{$answer->correto ? 'checked' : ''}} disabled/>
                                 </div>
                                 <div class="col-sm-11">
-                                    <input name="answers[{{ $index }}][descricao]" type="text" class="form-control" value="{{ $answer->descricao }}" id="box">
+                                    <input name="answers[{{ $index }}][descricao]" type="text" class="form-control" value="{{ $answer->descricao }}" id="box" disabled>
                                 </div>
                             </div>
                             <br>

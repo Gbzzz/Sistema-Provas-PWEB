@@ -30,12 +30,13 @@ services:
       - traefik.enable=true
       - traefik.network=traefik-public
       - traefik.http.routers.portainer-rtr.entrypoints=websecure
-      - traefik.http.routers.portainer-rtr.rule=Host(`portainer.testsystem.tech`)
+      - traefik.http.routers.portainer-rtr.rule=Host(`portainer.guilhermebraz.tech`)
       - traefik.http.routers.portainer-rtr.tls=true
       - traefik.http.routers.portainer-rtr.tls.certresolver=letsencrypt
       - traefik.http.services.portainer-svc.loadbalancer.server.port=9000
 
   traefik:
+    container_name: traefik
     image: traefik:latest
     ports:
       - 80:80
@@ -61,11 +62,11 @@ services:
 #        - traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true
       # Uses the environment variable DOMAIN
       - traefik.http.routers.traefik-rtr.entrypoints=websecure
-      - traefik.http.routers.traefik-rtr.rule=Host(`traefik.testsystem.tech`)
+      - traefik.http.routers.traefik-rtr.rule=Host(`traefik.guilhermebraz.tech`)
       - traefik.http.routers.traefik-rtr.service=api@internal
       - traefik.http.routers.traefik-rtr.tls=true
       - traefik.http.routers.traefik-rtr.tls.certresolver=letsencrypt
-      - traefik.http.routers.traefik-rtr.tls.domains[0].main=testsystem.tech
+      - traefik.http.routers.traefik-rtr.tls.domains[0].main=guilhermebraz.tech
       # Enable HTTP Basic auth, using the middleware created above
       - traefik.http.routers.traefik-rtr.middlewares=basic-auth@file
       # Define the port inside of the Docker service to use
@@ -94,7 +95,7 @@ services:
       # Use the TLS Challenge for Let's Encrypt
       - --certificatesresolvers.letsencrypt.acme.tlschallenge=true
       # Uso de Let's Encrypt staging server para testes
-      #- --certificatesresolvers.le.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+      # - --certificatesresolvers.le.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
       # Load dynamic configuration from one or more .toml or .yml files in a directory.
       - --providers.file.directory=/rules
       # Only works on top level files in the rules folder
@@ -140,7 +141,7 @@ services:
       #definição da porta de entrada do traefik proxy
       - traefik.http.routers.laravel-rtr.entrypoints=websecure
       #definição da rota via traefik proxy
-      - traefik.http.routers.laravel-rtr.rule=Host(`laravel.testsystem.tech`)
+      - traefik.http.routers.laravel-rtr.rule=Host(`laravel.guilhermebraz.tech`)
       - traefik.http.routers.laravel-rtr.tls=true
       - traefik.http.routers.laravel-rtr.tls.certresolver=letsencrypt
       #definição do serviço via traefik proxy
@@ -185,7 +186,7 @@ services:
       - traefik.docker.network=traefik-public
       ## HTTP Routers
       - traefik.http.routers.phpmyadmin-rtr.entrypoints=websecure
-      - traefik.http.routers.phpmyadmin-rtr.rule=Host(`phpmyadmin.testsystem.tech`)
+      - traefik.http.routers.phpmyadmin-rtr.rule=Host(`phpmyadmin.guilhermebraz.tech`)
       - traefik.http.routers.phpmyadmin-rtr.tls=true
       - traefik.http.routers.phpmyadmin-rtr.tls.certresolver=letsencrypt
       ## HTTP Services
