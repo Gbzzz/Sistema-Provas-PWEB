@@ -8,15 +8,6 @@ use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
-    public function index()
-    {
-
-    }
-
-    public function create()
-    {
-        //
-    }
 
     public function storeMark(Request $request){
         $question = Question::create([
@@ -26,11 +17,13 @@ class QuestionController extends Controller
         ]);
 
         $answers = $request->input('answer');
+        // verificando se correta está setado, se estiver atribuo true a ele
         foreach ($answers as $key => $value) {
             if(isset($value['correto']))
                 $answers[$key]['correto'] = true;
         }
 
+        // associando as respostas a pergunta
         $question->answers()->createMany($answers);
 
         return view('dashboard');
@@ -48,11 +41,6 @@ class QuestionController extends Controller
        Question::create($data);
 
        return redirect('/questions');
-
-
-        // $question = Question::create($request->all());
-
-        // return back();
     }
 
     public function list()
@@ -63,9 +51,10 @@ class QuestionController extends Controller
 
     public function edit($id)
     {
+        // puxando as questões do banco
         $question = Question::find($id);
+        // puxando as respostas do banco
         $question->answers;
-        //dd($question->toArray());
         return view('questions.edit', compact('question'));
     }
 
@@ -82,7 +71,6 @@ class QuestionController extends Controller
     public function updateQuestionMark(Request $request, $id)
     {
     
-        //dd($request->all());
         $question = Question::findOrFail($id);
 
         // Atualizando os dados da tabela principal
@@ -93,6 +81,7 @@ class QuestionController extends Controller
         $answers = $request->input('answers');
 
         foreach ($answers as  $answerData) {
+            // procurando as respostas relacionadas a questão
             $answer = Answer::findOrFail($answerData['id']);
             // Atualiza os campos de descrição e correto na tabela de respostas
             $answer->descricao = $answerData['descricao'];
@@ -102,11 +91,6 @@ class QuestionController extends Controller
 
         return redirect('/questions/list');
     }
-
-
-
-
-
 
     public function delete($id)
     {
@@ -118,9 +102,8 @@ class QuestionController extends Controller
     public function view($id)
     {
         $question = Question::find($id);
+        // passando as respostas da questão em um array
         $question['answers'] = $question->answers;
-
-        // dd($question->toArray());
         return view('questions.view', compact('question'));
     }
 }

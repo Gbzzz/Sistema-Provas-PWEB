@@ -11,6 +11,8 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="border border-gray-200 px-4 py-2">
 
+
+                        <!-- Botões que chamam os modais -->
                         <x-label for="text" :value="__('Criar Questão')" />
                         <x-button type="button" class="mt" data-toggle="modal" data-target="#aberta-Modal">
                             Questão Aberta
@@ -27,6 +29,7 @@
                         <x-button type="button" class="mt" data-toggle="modal" data-target="#uma-correta-Modal">
                             Questão com Apenas 1 Correta
                         </x-button>
+                        <!-- Botoões que chamam os modais -->
 
                         <!-- Modal Aberta -->
                         <div class="modal fade" id="aberta-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -53,7 +56,8 @@
                                           <label for="exampleInputPassword1">Resposta</label>
                                           <input name="answer" type="text" class="form-control" id="exampleInputPassword1" placeholder="..." required>
                                         </div>
-
+                                        
+                                        <!-- Input para identificar o tipo da questão -->
                                         <input type="hidden" name="tipoQuestao" value="1">
 
                                         <div class="modal-footer">
@@ -119,6 +123,7 @@
                                             </label>
                                         </div>
 
+                                        <!-- Input para identificar o tipo da questão -->
                                         <input type="hidden" name="tipoQuestao" value="2">
 
                                         <div class="modal-footer">
@@ -184,6 +189,7 @@
                                             </label>
                                         </div>
 
+                                        <!-- Input para identificar o tipo da questão -->
                                         <input type="hidden" name="tipoQuestao" value="3">
 
                                         <div class="modal-footer">
@@ -249,6 +255,7 @@
                                             </label>
                                         </div>
 
+                                        <!-- Input para identificar o tipo da questão -->
                                         <input type="hidden" name="tipoQuestao" value="4">
 
                                         <div class="modal-footer">
@@ -271,6 +278,8 @@
 
 </x-app-layout>
 
+<!-- Script para que o checkbox da questão que tem apenas uma correta funcione igual um radio,
+que quando um deles é marcado, desabilita os outros e desmarca o último -->
 <script>
     const radiosOnlyOne = document.getElementsByClassName('only-one');
 

@@ -15,7 +15,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="border border-gray-200 px-4 py-2">
-
+                    
+                    <!-- Mesma view da list, apenas com disabled nos input's -->
                     @if($question->answer)
                         <div class="form-group">
                             <label>Tag</label>
@@ -35,7 +36,8 @@
                         </div>
                         <br>
 
-                        @else
+                    <!-- Como é apenas uma vizualização, preciso distinguir apenas se a questão é aberta ou não -->
+                    @else
 
                         <div class="form-group">
                             <label>Tag</label>
@@ -69,7 +71,7 @@
                             <br>
                         @endforeach
 
-                        @endif
+                    @endif
 
                         <form action="{{ route('list_questions') }}">
                             <button type="submit" class="mt-2">

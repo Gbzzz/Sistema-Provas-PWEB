@@ -16,6 +16,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="border border-gray-200 px-4 py-2">
 
+                    <!-- Verificando se a questão é aberta -->
                     @if($question->tipoQuestao == '1')
                         <form action="{{ route('update_questionOpen', $question->id) }}" method="POST">
                             @method('PUT')
@@ -43,6 +44,7 @@
                                     Atualizar
                                 </button>
 
+                    <!-- Verificando se a questão é de v/f ou múltipla escolha -->
                     @elseif($question->tipoQuestao == '2' || $question->tipoQuestao == '3')
 
                         <form action="{{ route('update_questionMark', $question->id) }}" method="POST">
@@ -87,6 +89,7 @@
 
                             </form>
 
+                        <!-- Questão com apenas uma correta -->
                         @else
 
                         <form action="{{ route('update_questionMark', $question->id) }}" method="POST">
@@ -109,13 +112,14 @@
                         @endphp
 
                         <label>Respostas</label>
+                        <!-- foreach para printar as 5 opções -->
                         @foreach($question->answers as $index => $answer)
                             <div>
                                 <label>Letra {{ $letras[$index] }}</label>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-1">
-                                    <input type="hidden" name="answers[{{ $index }}][id]" value="{{$answer->id}}" />
+                                    <input type="hidden" name="answers[{{ $index }}][id]" value="{{$answer->id}}" />             <!-- Verificando se correto é true (1) e se não for, não atribui nada -->
                                     <input type="checkbox" class="form-check-input only-one" name="answers[{{ $index }}][correto]" value="1" {{$answer->correto ? 'checked' : ''}} @if($answer->correto)) disabled @endif/>
                                 </div>
                                 <div class="col-sm-11">
