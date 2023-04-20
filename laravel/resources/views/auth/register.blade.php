@@ -19,6 +19,16 @@
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
 
+            <!-- Docente/Discente -->
+            <div class="mt-4">
+                <x-label for="tipoAcesso" :value="__('Função')" />
+
+                <select id="tipoAcesso" class="block mt-1 w-full border border-gray-300 rounded-md" name="tipoAcesso" :value="old('tipoeAcesso')" required>
+                    <option value=1>Docente</option>
+                    <option value=2>Discente</option>
+                </select>
+            </div>
+
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('E-mail')" />
@@ -47,6 +57,10 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                </a>
+
+                <a href="{{ url('/dashboard') }}" type="button" class="mt" data-dismiss="modal" role="button">
+                    Voltar
                 </a>
 
                 <x-button class="ml-4">
