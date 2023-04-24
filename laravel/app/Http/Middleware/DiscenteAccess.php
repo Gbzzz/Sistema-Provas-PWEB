@@ -8,13 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class DiscenteAccess
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
     public function handle(Request $request, Closure $next)
     {
         // verificando se ele está autenticado e se no db ele está com permissão de amin

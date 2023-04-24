@@ -10,7 +10,7 @@ class DocenteAccess
 {
     public function handle(Request $request, Closure $next)
     {
-        // verificando se ele está autenticado e se no db ele está com permissão de amin
+        // verificando se ele está autenticado e se no db ele está com permissão de admin
         if(Auth::check() && Auth::user()->docente == 1){
             return $next($request);
         }else{

@@ -40,7 +40,7 @@ class QuestionController extends Controller
 
        Question::create($data);
 
-       return redirect('/questions');
+       return redirect('/questions')->with('success-message','Questão cadastrada com sucesso.');
     }
 
     public function list()

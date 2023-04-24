@@ -28,7 +28,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <x-button>
-                    {{ __('Um e-mail para a troca de senha foi enviado!') }}
+                    {{ __('Enviar E-mail') }}
                 </x-button>
             </div>
         </form>

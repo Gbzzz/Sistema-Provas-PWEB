@@ -8,28 +8,37 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                @if(session()->has('success-message'))
+                    <div class="alert alert-success mx-4 my-2">
+                        {{session()->get('success-message')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>                    
+                @endif
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="border border-gray-200 px-4 py-2">
-
-
-                        <!-- Botões que chamam os modais -->
                         <x-label for="text" :value="__('Criar Questão')" />
-                        <x-button type="button" class="mt" data-toggle="modal" data-target="#aberta-Modal">
-                            Questão Aberta
-                        </x-button>
+                        <div class="row">
+                                <!-- Botões que chamam os modais -->
+                            
+                            <x-button type="button" class="mt" data-toggle="modal" data-target="#aberta-Modal">
+                                Questão Aberta
+                            </x-button>
 
-                        <x-button type="button" class="mt" data-toggle="modal" data-target="#v-f-Modal">
-                            Questão de V/F
-                        </x-button>
+                            <x-button type="button" class="mt" data-toggle="modal" data-target="#v-f-Modal">
+                                Questão de V/F
+                            </x-button>
 
-                        <x-button type="button" class="mt" data-toggle="modal" data-target="#multipla-escolha-Modal">
-                            Questão Multipla Escolha
-                        </x-button>
+                            <x-button type="button" class="mt" data-toggle="modal" data-target="#multipla-escolha-Modal">
+                                Questão Multipla Escolha
+                            </x-button>
 
-                        <x-button type="button" class="mt" data-toggle="modal" data-target="#uma-correta-Modal">
-                            Questão com Apenas 1 Correta
-                        </x-button>
-                        <!-- Botoões que chamam os modais -->
+                            <x-button type="button" class="mt" data-toggle="modal" data-target="#uma-correta-Modal">
+                                Questão com Apenas 1 Correta
+                            </x-button>
+                            <!-- Botoões que chamam os modais -->
+                        </div>
 
                         <!-- Modal Aberta -->
                         <div class="modal fade" id="aberta-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
