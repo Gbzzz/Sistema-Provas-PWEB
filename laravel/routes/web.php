@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
