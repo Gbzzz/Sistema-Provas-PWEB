@@ -27,7 +27,7 @@ Route::controller(AuthenticatedSessionController::class)->group(function () {
 });
 
 Route::controller(NewPasswordController::class)->group(function(){
-    Route::get('reset-password', [NewPasswordController::class, 'create'])
+    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
                 ->name('password.reset');
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
