@@ -26,7 +26,7 @@ class QuestionController extends Controller
         // associando as respostas a pergunta
         $question->answers()->createMany($answers);
 
-        return view('dashboard');
+        return redirect('/questions')->with('success-message','Questão cadastrada com sucesso.');
     }
 
     public function storeOpen(Request $request)
@@ -70,7 +70,7 @@ class QuestionController extends Controller
 
     public function updateQuestionMark(Request $request, $id)
     {
-    
+
         $question = Question::findOrFail($id);
 
         // Atualizando os dados da tabela principal

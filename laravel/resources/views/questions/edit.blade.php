@@ -120,7 +120,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-1">
                                     <input type="hidden" name="answers[{{ $index }}][id]" value="{{$answer->id}}" />             <!-- Verificando se correto é true (1) e se não for, não atribui nada -->
-                                    <input type="checkbox" class="form-check-input only-one" name="answers[{{ $index }}][correto]" value="1" {{$answer->correto ? 'checked' : ''}} @if($answer->correto)) disabled @endif/>
+                                    <input type="checkbox" class="form-check-input only-one" name="answers[{{ $index }}][correto]" value="1" {{$answer->correto ? 'checked' : ''}}/>
                                 </div>
                                 <div class="col-sm-11">
                                     <input name="answers[{{ $index }}][descricao]" type="text" class="form-control" value="{{ $answer->descricao }}" id="box">

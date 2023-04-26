@@ -14,14 +14,14 @@
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>                    
+                    </div>
                 @endif
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="border border-gray-200 px-4 py-2">
                         <x-label for="text" :value="__('Criar Questão')" />
                         <div class="row">
                                 <!-- Botões que chamam os modais -->
-                            
+
                             <x-button type="button" class="mt" data-toggle="modal" data-target="#aberta-Modal">
                                 Questão Aberta
                             </x-button>
@@ -65,13 +65,13 @@
                                           <label for="exampleInputPassword1">Resposta</label>
                                           <input name="answer" type="text" class="form-control" id="exampleInputPassword1" placeholder="..." required>
                                         </div>
-                                        
+
                                         <!-- Input para identificar o tipo da questão -->
                                         <input type="hidden" name="tipoQuestao" value="1">
 
                                         <div class="modal-footer">
                                             <x-button type="button" class="mt" data-dismiss="modal">Fechar</x-button>
-                                            <x-button type="submit" class="mt">Criar Questão</x-button>
+                                            <x-button type="submit" class="mt">Criar questão</x-button>
                                         </div>
                                       </form>
                                 </div>
