@@ -12,6 +12,10 @@
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
 
+            @php
+                $email = session('email')
+            @endphp
+
             <!-- Password Reset Token -->
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
@@ -20,7 +24,7 @@
                 <x-label for="email" :value="__('E-mail')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email"
-                    :value="old('email', $request->email)" required autofocus />
+                    :value="old('email', $email)" required autofocus />
             </div>
 
             <!-- Password -->

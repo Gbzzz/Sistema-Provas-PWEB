@@ -7,40 +7,32 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     *
-     * @return \Illuminate\View\View
-     */
     public function create()
     {
         return view('auth.login');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     *
-     * @param  \App\Http\Requests\Auth\LoginRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(LoginRequest $request)
     {
         $request->authenticate();
-
         $request->session()->regenerate();
+    
+        $user = User::where('email', $request->email)->firstOrFail();
+        $email = $request->email;
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if ($user->FirstAccess == true) {
+            $token = Password::createToken($user);
+            return redirect('reset-password/'.$token)->with('email', $email);
+        } else {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
     }
-
-    /**
-     * Destroy an authenticated session.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function destroy(Request $request)
     {
         Auth::guard('web')->logout();
