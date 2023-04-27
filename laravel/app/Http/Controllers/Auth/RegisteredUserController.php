@@ -46,6 +46,7 @@ class RegisteredUserController extends Controller
             'docente' => true,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'FirstAccess' => true,
         ]);
 
         event(new Registered($userDocente));
@@ -56,6 +57,7 @@ class RegisteredUserController extends Controller
             'discente' => true,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'FirstAccess' => true,
         ]); 
 
         event(new Registered($userDiscente));

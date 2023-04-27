@@ -40,18 +40,21 @@
             </div>
 
             <!-- Password -->
+
             <div class="mt-4">
                 <x-label for="password" :value="__('Senha')" />
+                @php
+                    $senha = Str::random(8);
+                    echo $senha;
+                @endphp
 
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                <x-input id="password" value="{{$senha}}" class="block mt-1 w-full" type="hidden" name="password" required
                     autocomplete="new-password" />
             </div>
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirme sua Senha')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                <x-input id="password_confirmation" value="{{$senha}}" class="block mt-1 w-full" type="hidden"
                     name="password_confirmation" required />
             </div>
 
