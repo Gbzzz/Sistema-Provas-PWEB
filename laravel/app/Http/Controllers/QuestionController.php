@@ -55,7 +55,7 @@ class QuestionController extends Controller
         $question = Question::find($id);
         // puxando as respostas do banco
         $question->answers;
-        return view('questions.edit', compact('question'));
+        return view('questions.edit', compact('question'))->with('success-message','Questão editada com sucesso.');
     }
 
     public function updateQuestionOpen(Request $request, $id)
@@ -65,7 +65,7 @@ class QuestionController extends Controller
         $questions->enunciado = $request->input('enunciado');
         $questions->answer = $request->input('answer');
         $questions->save();
-        return redirect('/questions/list');
+        return redirect('/questions/list')->with('success-message','Questão atualizada com sucesso.');
     }
 
     public function updateQuestionMark(Request $request, $id)
@@ -89,14 +89,14 @@ class QuestionController extends Controller
             $answer->save();
         }
 
-        return redirect('/questions/list');
+        return redirect('/questions/list')->with('success-message','Questão atualizada com sucesso.');
     }
 
     public function delete($id)
     {
         $questions = Question::find($id);
         $questions->delete();
-        return redirect('/questions/list');
+        return redirect('/questions/list')->with('success-message','Questão deletada com sucesso.');
     }
 
     public function view($id)
