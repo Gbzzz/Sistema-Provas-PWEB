@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,36 +19,38 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->name('dashboard');
 
-Route::get('/questions', function () {
-    return view('questions/index');
-})->middleware(['auth'])->name('questions');
+Route::middleware('docente')->group(function(){
 
-Route::get('/questions/list', [QuestionController::class, 'list'])->name('list_questions');
+    Route::get('/questions', [QuestionController::class, 'index'])->name('questions');
 
-Route::post('/questions/addOpen', [QuestionController::class, 'storeOpen'])->name('add_questionOpen');
+    Route::get('/questions/list', [QuestionController::class, 'list'])->name('list_questions');
+    
+    Route::post('/questions/addOpen', [QuestionController::class, 'storeOpen'])->name('add_questionOpen');
+    
+    Route::post('/questions/addMark', [QuestionController::class, 'storeMark'])->name('add_questionMark');
+    
+    Route::get('/questions/edit/{id}', [QuestionController::class, 'edit'])->name('edit_question');
+    
+    Route::put('/questions/updateOpen/{id}', [QuestionController::class, 'updateQuestionOpen'])->name('update_questionOpen');
+    
+    Route::put('/questions/updateMark/{id}', [QuestionController::class, 'updateQuestionMark'])->name('update_questionMark');
+    
+    Route::get('/questions/view/{id}', [QuestionController::class, 'view'])->name('view_question');
+    
+    Route::delete('/questions/delete/{id}', [QuestionController::class, 'delete'])->name('delete_questions');
 
-Route::post('/questions/addMark', [QuestionController::class, 'storeMark'])->name('add_questionMark');
+    Route::get('/test', [TestController::class, 'index'])->name('list_test');
 
-Route::get('/questions/edit/{id}', [QuestionController::class, 'edit'])->name('edit_question');
-
-Route::put('/questions/updateOpen/{id}', [QuestionController::class, 'updateQuestionOpen'])->name('update_questionOpen');
-
-Route::put('/questions/updateMark/{id}', [QuestionController::class, 'updateQuestionMark'])->name('update_questionMark');
-
-Route::get('/questions/view/{id}', [QuestionController::class, 'view'])->name('view_question');
-
-Route::delete('/questions/delete/{id}', [QuestionController::class, 'delete'])->name('delete_questions');
-
-Route::get('registrar', [RegisteredUserController::class, 'index'])->middleware('admin');
-
-Route::post('registrar', [RegisteredUserController::class, 'create'])->middleware('admin');
+    Route::get('/test/add/{id}', [TestController::class, 'store'])->name('add_test');
+    
+});
 
 Route::fallback(function()
 {

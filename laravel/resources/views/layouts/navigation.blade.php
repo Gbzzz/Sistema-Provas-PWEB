@@ -16,16 +16,30 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                @if(Auth::check() && Auth::user()->docente == 1)
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('questions')" :active="request()->routeIs('questions')">
                         {{ __('Cadastrar Questão') }}
                     </x-nav-link>
                 </div>
+                @endif
+
+                @if(Auth::check() && Auth::user()->docente == 1)
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('list_questions')" :active="request()->routeIs('list_questions')">
                         {{ __('Ver Questões') }}
                     </x-nav-link>
                 </div>
+                @endif
+               
+                @if(Auth::check() && Auth::user()->docente == 1)
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('list_test')" :active="request()->routeIs('list_test')">
+                        {{ __('Ambiente de Prova') }}
+                    </x-nav-link>
+                </div>
+                @endif
+
                 @if(Auth::check() && Auth::user()->admin == 1)
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
