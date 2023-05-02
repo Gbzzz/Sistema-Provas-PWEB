@@ -23,30 +23,27 @@
                                 <form>
                                     @csrf
                                     <div class="container-fluid">
-                                        <div class="row">
-                                          <div class="col-12">
-                                            <div class="form-group">
-                                              <label for="exampleInputEmail1">Tag</label>
-                                              <input name="tag" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
-                                            </div>
+                                      <div class="row justify-content-start">
+                                        <div class="col-12">
+                                          <div class="form-group">
+                                            <label for="exampleInputEmail1">Tag</label>
+                                            <input name="tag" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                           </div>
-                                          <div class="col-12">
-                                            <div class="form-group">
-                                              <label for="exampleInputEmail1">Enunciado</label>
-                                              <input name="enunciado" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
-                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                          <div class="form-group">
+                                            <label for="exampleInputEmail1">Enunciado</label>
+                                            <input name="enunciado" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                                           </div>
-                                          <div class="col-12">
-                                            <div class="form-group">
-                                              <label for="exampleInputPassword1">Resposta</label>
-                                              <input name="answer" type="text" class="form-control" id="exampleInputPassword1" placeholder="..." required>
-                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                          <div class="form-group">
+                                            <label for="exampleInputPassword1">Resposta</label>
+                                            <input name="answer" type="text" class="form-control" id="exampleInputPassword1" placeholder="..." required>
                                           </div>
                                         </div>
                                       </div>
-
-
-
+                                    </div>
 
                                     <!-- Input para identificar o tipo da questão -->
                                     <input type="hidden" name="tipoQuestao" value="1">
