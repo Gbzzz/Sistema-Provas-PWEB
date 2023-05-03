@@ -40,4 +40,4 @@ services:
       - traefik.http.routers.laravel-rtr.tls.certresolver=letsencrypt
       #definição do serviço via traefik proxy
       - traefik.http.services.laravel-svc.loadbalancer.server.port=80
-      - traefik.http.routers.laravel-rtr.middlewares=basic-auth@file
+      # - traefik.http.routers.laravel-rtr.middlewares=basic-auth@file

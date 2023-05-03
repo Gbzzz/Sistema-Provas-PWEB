@@ -16,42 +16,11 @@
                         </button>
                     </div>
                 @endif
+
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="border border-gray-200 px-4 py-2">
 
-                            <div class="d-flex justify-content-center">
-                                <form>
-                                    @csrf
-                                    <div class="container-fluid">
-                                      <div class="row justify-content-start">
-                                        <div class="col-12">
-                                          <div class="form-group">
-                                            <label for="exampleInputEmail1">Tag</label>
-                                            <input name="tag" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
-                                          </div>
-                                        </div>
-                                        <div class="col-12">
-                                          <div class="form-group">
-                                            <label for="exampleInputEmail1">Enunciado</label>
-                                            <input name="enunciado" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
-                                          </div>
-                                        </div>
-                                        <div class="col-12">
-                                          <div class="form-group">
-                                            <label for="exampleInputPassword1">Resposta</label>
-                                            <input name="answer" type="text" class="form-control" id="exampleInputPassword1" placeholder="..." required>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <!-- Input para identificar o tipo da questão -->
-                                    <input type="hidden" name="tipoQuestao" value="1">
-
-                                  </form>
-                            </div>
-
-                    <table class="table">
+                        <table class="table">
                             <thead>
                               <tr>
                                 <th>Id</th>
@@ -68,19 +37,41 @@
                                 <td>{{$question->tag}}</td>
                                 <td>{{$question->enunciado}}</td>
 
+                                @php
+                                    $letras = ['A', 'B', 'C', 'D', 'E'];
+                                @endphp
+
                                 <td>
-                                    <form action="{{ route('add_test', ['id' => $question->id]) }}" method="GET">
-                                        @csrf
-                                        <button type="submit">
-                                            Adicionar
-                                        </button>
-                                    </form>
+                                    <div class="col-sm-1">
+                                        <input type="hidden" name="answers[][id]"/>
+                                        <input type="checkbox" name="answers[][correto]"/>
+                                    </div>
                                 </td>
 
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+
+                        <form>
+                            @csrf
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Início</label>
+                              <input name="time_start" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Fim</label>
+                              <input name="time_end" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputPassword1">Tempo de prova</label>
+                              <input name="time_test" type="time" class="form-control" id="exampleInputPassword1" required>
+                            </div>
+
+                            <div class="modal-footer">
+                                <x-button type="submit" class="mt">Criar prova</x-button>
+                            </div>
+                        </form>
 
                     </div>
                 </div>

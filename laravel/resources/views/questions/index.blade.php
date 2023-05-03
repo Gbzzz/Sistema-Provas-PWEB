@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Questões') }}
+            {{ __('Cria Questão') }}
         </h2>
     </x-slot>
 
@@ -18,7 +18,6 @@
                 @endif
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="border border-gray-200 px-4 py-2">
-                        <x-label for="text" :value="__('Criar Questão')" />
                         <div class="row">
                                 <!-- Botões que chamam os modais -->
 
