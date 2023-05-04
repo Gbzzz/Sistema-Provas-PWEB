@@ -20,6 +20,8 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="border border-gray-200 px-4 py-2">
 
+                <form action="{{ route('add_test') }}" method="POST">
+                    @csrf
                         <table class="table">
                             <thead>
                               <tr>
@@ -37,15 +39,12 @@
                                 <td>{{$question->tag}}</td>
                                 <td>{{$question->enunciado}}</td>
 
-                                @php
-                                    $letras = ['A', 'B', 'C', 'D', 'E'];
-                                @endphp
-
                                 <td>
+
                                     <div class="col-sm-1">
-                                        <input type="hidden" name="answers[][id]"/>
-                                        <input type="checkbox" name="answers[][correto]"/>
+                                        <input type="checkbox" value="{{ $question->id }}"/>
                                     </div>
+
                                 </td>
 
                             </tr>
@@ -53,15 +52,13 @@
                         </tbody>
                     </table>
 
-                        <form>
-                            @csrf
                             <div class="form-group">
                               <label for="exampleInputEmail1">Início</label>
-                              <input name="time_start" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
+                              <input name="date_start" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                             </div>
                             <div class="form-group">
                               <label for="exampleInputEmail1">Fim</label>
-                              <input name="time_end" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
+                              <input name="date_end" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
                             </div>
                             <div class="form-group">
                               <label for="exampleInputPassword1">Tempo de prova</label>
@@ -81,3 +78,27 @@
 
 
 </x-app-layout>
+
+<script>
+    const selectedIds = [];
+
+function handleCheckboxClick(event) {
+  const checkbox = event.target;
+  const questionId = parseInt(checkbox.value);
+
+  if (checkbox.checked) {
+    selectedIds.push(questionId);
+  } else {
+    const index = selectedIds.indexOf(questionId);
+    if (index !== -1) {
+      selectedIds.splice(index, 1);
+    }
+  }
+}
+
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener('click', handleCheckboxClick);
+});
+
+</script>

@@ -35,7 +35,7 @@
                 @if(Auth::check() && Auth::user()->docente == 1)
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('list_test')" :active="request()->routeIs('list_test')">
-                        {{ __('Ambiente de Prova') }}
+                        {{ __('Criar Prova') }}
                     </x-nav-link>
                 </div>
                 @endif
