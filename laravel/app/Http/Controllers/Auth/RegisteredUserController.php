@@ -58,11 +58,11 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'FirstAccess' => true,
-        ]); 
+        ]);
 
         event(new Registered($userDiscente));
         }
 
-    return redirect(RouteServiceProvider::HOME);
+    return redirect(RouteServiceProvider::HOME)->with('success-message','Usuário cadastrado com sucesso.');
     }
 }
