@@ -19,15 +19,7 @@
                 @if(Auth::check() && Auth::user()->docente == 1)
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('questions')" :active="request()->routeIs('questions')">
-                        {{ __('Cadastrar Questão') }}
-                    </x-nav-link>
-                </div>
-                @endif
-
-                @if(Auth::check() && Auth::user()->docente == 1)
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('list_questions')" :active="request()->routeIs('list_questions')">
-                        {{ __('Ver Questões') }}
+                        {{ __('Questões') }}
                     </x-nav-link>
                 </div>
                 @endif

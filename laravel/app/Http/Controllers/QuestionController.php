@@ -10,7 +10,8 @@ class QuestionController extends Controller
 {
 
     public function index(){
-        return view('questions.index');
+        $questions = Question::get();
+        return view('questions.index', compact('questions'));
     }
 
     public function storeMark(Request $request){
@@ -50,7 +51,7 @@ class QuestionController extends Controller
     public function list()
     {
         $questions = Question::get();
-        return view('questions.list', compact('questions'));
+        return view('questions.index', compact('questions'));
     }
 
     public function edit($id)

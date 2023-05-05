@@ -1,7 +1,16 @@
+<style>
+    .button-container {
+    display: flex;
+    justify-content: space-between; /* ajuste o espaçamento horizontal dos botões */
+    align-items: center; /* ajuste o alinhamento vertical dos botões */
+}
+
+</style>
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Cria Questão') }}
+            {{ __('Questões') }}
         </h2>
     </x-slot>
 
@@ -17,27 +26,27 @@
                     </div>
                 @endif
                 <div class="p-6 bg-white border-b border-gray-200">
+                    <label for="exampleInputEmail1">Opções de Questão:</label>
                     <div class="border border-gray-200 px-4 py-2">
-                        <div class="row">
-                                <!-- Botões que chamam os modais -->
 
+                        <div class="button-container">
                             <x-button type="button" class="mt" data-toggle="modal" data-target="#aberta-Modal">
                                 Questão Aberta
-                            </x-button>
-
-                            <x-button type="button" class="mt" data-toggle="modal" data-target="#v-f-Modal">
-                                Questão de V/F
                             </x-button>
 
                             <x-button type="button" class="mt" data-toggle="modal" data-target="#multipla-escolha-Modal">
                                 Questão Multipla Escolha
                             </x-button>
 
+                            <x-button type="button" class="mt" data-toggle="modal" data-target="#v-f-Modal">
+                                Questão de True/False
+                            </x-button>
+
                             <x-button type="button" class="mt" data-toggle="modal" data-target="#uma-correta-Modal">
                                 Questão com Apenas 1 Correta
                             </x-button>
-                            <!-- Botoões que chamam os modais -->
                         </div>
+
 
                         <!-- Modal Aberta -->
                         <div class="modal fade" id="aberta-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -277,12 +286,63 @@
                         </div>
                         <!-- Modal com Apenas 1 Correta -->
 
+                        <br>
+
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Id</th>
+                                <th>Tag</th>
+                                <th>Enunciado</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                            @foreach($questions as $question)
+
+                              <tr>
+                                <td>{{$question->id}}</td>
+                                <td>{{$question->tag}}</td>
+                                <td>{{$question->enunciado}}</td>
+
+                                <td>
+                                    <form action="{{ route('edit_question', ['id' => $question->id]) }}" method="GET">
+                                        @csrf
+                                        <button type="submit">
+                                            Editar
+                                        </button>
+                                    </form>
+                                </td>
+
+                                <td>
+                                    <form action="/questions/view/{{$question->id}}" method="GET">
+                                        @csrf
+                                        <button type="submit">
+                                            Visualizar
+                                        </button>
+                                    </form>
+                                </td>
+
+                                <td>
+                                    <form action="/questions/delete/{{$question->id}}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                            <button
+                                                type="submit"> Deletar
+                                            </button>
+                                    </form>
+                                </td>
+
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 </x-app-layout>
 
