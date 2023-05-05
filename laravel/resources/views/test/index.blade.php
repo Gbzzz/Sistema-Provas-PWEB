@@ -20,7 +20,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="border border-gray-200 px-4 py-2">
 
-                <form action="{{ route('add_test') }}" method="POST">
+                <form action="{{ route('add_test') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                         <table class="table">
                             <thead>
@@ -39,13 +39,13 @@
                                 <td>{{$question->tag}}</td>
                                 <td>{{$question->enunciado}}</td>
 
-                                <td>
+                                {{-- <td>
 
                                     <div class="col-sm-1">
-                                        <input type="checkbox" value="{{ $question->id }}"/>
+                                        <input type="checkbox" name="selectedIds[]" value="{{ $question->id }}" />
                                     </div>
 
-                                </td>
+                                </td> --}}
 
                             </tr>
                         @endforeach
@@ -78,27 +78,3 @@
 
 
 </x-app-layout>
-
-<script>
-    const selectedIds = [];
-
-function handleCheckboxClick(event) {
-  const checkbox = event.target;
-  const questionId = parseInt(checkbox.value);
-
-  if (checkbox.checked) {
-    selectedIds.push(questionId);
-  } else {
-    const index = selectedIds.indexOf(questionId);
-    if (index !== -1) {
-      selectedIds.splice(index, 1);
-    }
-  }
-}
-
-const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-checkboxes.forEach((checkbox) => {
-  checkbox.addEventListener('click', handleCheckboxClick);
-});
-
-</script>

@@ -19,6 +19,7 @@ class CreateQuestionsTable extends Migration
             $table->text('enunciado');
             $table->text('answer')->nullable();
             $table->integer('tipoQuestao');
+            $table->foreignId('test_id')->references('id')->on('tests')->onDelete('cascade');
             $table->timestamps();
         });
     }

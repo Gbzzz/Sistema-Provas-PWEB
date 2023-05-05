@@ -14,8 +14,7 @@ class Test extends Model
         'time_test',
     ];
 
-//     public function question()
-//     {
-//         return $this->belongsTo(questions::class);
-//     }
+    public function questions(){
+        return $this->hasMany(Question::class, 'tests_id');
+    }
 }

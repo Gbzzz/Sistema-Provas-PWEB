@@ -15,13 +15,16 @@ class TestController extends Controller
 
     public function store(Request $request){
 
-        dd($request->all());
+        $selectedIds = $request->input('selectedIds', []);
 
-        $data = Test::create([
+        foreach ($selectedIds as $id) {
+            
+        }
+
+        Test::create([
             'date_start'=>$request->input('date_start'),
             'date_end'=>$request->input('date_end'),
             'time_test'=>$request->input('time_test'),
-            'question_id'=>$request->input('time_test'),
         ]);
 
         return view('dashboard')->with('success-message', 'Prova criada com Suceso!');

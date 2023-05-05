@@ -20,8 +20,8 @@ class Question extends Model
      {
          return $this->hasMany(Answer::class, 'question_id');
      }
-    //  public function tests()
-    //  {
-    //      return $this->hasMany(Test::class, 'question_id');
-    //  }
+     public function tests()
+     {
+         return $this->belongsTo(Test::class);
+     }
 }

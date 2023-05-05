@@ -14,12 +14,11 @@ class CreateTestTable extends Migration
     public function up()
     {
         Schema::create('tests', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('id');
             $table->timestamps();
             $table->string('date_start');
             $table->string('date_end');
             $table->time('time_test');
-            $table->foreignId('question_id')->references('id')->on('questions')->onDelete('cascade');
         });
     }
 
