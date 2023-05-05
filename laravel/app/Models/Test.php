@@ -8,13 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Test extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'date_start',
         'date_end',
         'time_test',
     ];
-
-    public function questions(){
-        return $this->hasMany(Question::class, 'tests_id');
-    }
 }

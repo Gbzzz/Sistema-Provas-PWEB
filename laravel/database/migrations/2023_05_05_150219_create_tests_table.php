@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTestTable extends Migration
+class CreateTestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,10 @@ class CreateTestTable extends Migration
     public function up()
     {
         Schema::create('tests', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
+            $table->id();
             $table->timestamps();
-            $table->string('date_start');
-            $table->string('date_end');
+            $table->date('date_start');
+            $table->date('date_end');
             $table->time('time_test');
         });
     }
