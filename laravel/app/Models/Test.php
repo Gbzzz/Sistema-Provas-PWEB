@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Test extends Model
 {
@@ -15,8 +16,8 @@ class Test extends Model
         'time_test',
     ];
 
-    public function questions(){
-
-        return $this->hasMany(Question::class, 'question_id');
+    public function questions(): BelongsToMany
+    {
+        return $this->belongsToMany(Question::class, 'test_question');
     }
 }

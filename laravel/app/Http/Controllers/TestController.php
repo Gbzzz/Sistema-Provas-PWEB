@@ -24,7 +24,9 @@ class TestController extends Controller
         // obter os IDs das perguntas selecionadas
         $selectedIds = $request->input('selectedIds', []);
 
-        $test->questions()->createMany($selectedIds);
+        foreach($selectedIds as $selectedId){
+            $test->questions()->attach($selectedId);
+        }
 
         return redirect('/dashboard')->with('success-message', 'Teste criado com sucesso!');
     }
