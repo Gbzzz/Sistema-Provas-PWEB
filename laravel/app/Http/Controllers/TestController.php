@@ -13,20 +13,21 @@ class TestController extends Controller
         return view('test.index', compact('questions'));
     }
 
-    public function store(Request $request){
-
-        $selectedIds = $request->input('selectedIds', []);
-
-        foreach ($selectedIds as $id) {
-            
-        }
-
-        Test::create([
-            'date_start'=>$request->input('date_start'),
-            'date_end'=>$request->input('date_end'),
-            'time_test'=>$request->input('time_test'),
+    public function store(Request $request)
+    {
+        $test = Test::create([
+            'date_start' => $request->input('date_start'),
+            'date_end' => $request->input('date_end'),
+            'time_test' => $request->input('time_test'),
         ]);
 
-        return view('dashboard')->with('success-message', 'Prova criada com Suceso!');
+        // obter os IDs das perguntas selecionadas
+        $selectedIds = $request->input('selectedIds', []);
+
+        $test->questions()->createMany($selectedIds);
+
+        return redirect('/dashboard')->with('success-message', 'Teste criado com sucesso!');
     }
+
+
 }

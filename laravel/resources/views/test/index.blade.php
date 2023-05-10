@@ -39,13 +39,14 @@
                                 <td>{{$question->tag}}</td>
                                 <td>{{$question->enunciado}}</td>
 
-                                {{-- <td>
+                                <td>
 
                                     <div class="col-sm-1">
-                                        <input type="checkbox" name="selectedIds[]" value="{{ $question->id }}" />
+                                        <input type="checkbox" name="id[]" value="{{ $question->id }}" />
+                                        <br>
                                     </div>
 
-                                </td> --}}
+                                </td>
 
                             </tr>
                         @endforeach

@@ -14,4 +14,9 @@ class Test extends Model
         'date_end',
         'time_test',
     ];
+
+    public function questions(){
+
+        return $this->hasMany(Question::class, 'question_id');
+    }
 }

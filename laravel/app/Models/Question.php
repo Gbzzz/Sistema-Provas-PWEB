@@ -20,7 +20,7 @@ class Question extends Model
      {
          return $this->hasMany(Answer::class, 'question_id');
      }
-     public function tests()
+     public function test()
      {
          return $this->belongsTo(Test::class);
      }
