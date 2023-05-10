@@ -23,6 +23,6 @@ class Question extends Model
      }
      public function test(): BelongsToMany
      {
-         return $this->belongsToMany(Test::class, 'test_question');
+         return $this->belongsToMany(Test::class);
      }
 }

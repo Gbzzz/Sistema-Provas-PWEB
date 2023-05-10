@@ -13,7 +13,7 @@ class TestQuestionTable extends Migration
      */
     public function up()
     {
-        Schema::create('test_question', function (Blueprint $table) {
+        Schema::create('question_test', function (Blueprint $table) {
             $table->foreignId('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->foreignId('test_id')->references('id')->on('tests')->onDelete('cascade');
         });

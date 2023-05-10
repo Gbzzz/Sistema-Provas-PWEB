@@ -22,7 +22,7 @@ class TestController extends Controller
         ]);
 
         // obter os IDs das perguntas selecionadas
-        $selectedIds = $request->input('selectedIds', []);
+        $selectedIds = $request->id;
 
         foreach($selectedIds as $selectedId){
             $test->questions()->attach($selectedId);

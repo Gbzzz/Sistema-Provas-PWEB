@@ -18,6 +18,6 @@ class Test extends Model
 
     public function questions(): BelongsToMany
     {
-        return $this->belongsToMany(Question::class, 'test_question');
+        return $this->belongsToMany(Question::class);
     }
 }
