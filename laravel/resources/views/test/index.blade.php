@@ -53,18 +53,20 @@
                         </tbody>
                     </table>
 
-                            <div class="form-group">
-                              <label for="exampleInputEmail1">Início</label>
-                              <input name="date_start" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
+                        <div class="form-group d-flex">
+                            <div class="form-floating flex-grow-1 mx-1 w-100">
+                                <label for="tag1">Início</label>
+                                <input name="date_start" type="date" class="form-control" id="tag1">
                             </div>
-                            <div class="form-group">
-                              <label for="exampleInputEmail1">Fim</label>
-                              <input name="date_end" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="..." required>
+                            <div class="form-floating flex-grow-1 w-100">
+                                <label for="tag2">Fim</label>
+                                <input name="date_end" type="date" class="form-control" id="tag2">
                             </div>
-                            <div class="form-group">
-                              <label for="exampleInputPassword1">Tempo de prova</label>
-                              <input name="time_test" type="time" class="form-control" id="exampleInputPassword1" required>
+                            <div class="form-floating flex-grow-1 mx-1 w-100">
+                                <label for="tag3">Tempo de Prova</label>
+                                <input name="time_test" type="time" class="form-control" id="tag3">
                             </div>
+                        </div>
 
                             <div class="modal-footer">
                                 <x-button type="submit" class="mt">Criar prova</x-button>

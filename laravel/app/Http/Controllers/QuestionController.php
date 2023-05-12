@@ -53,7 +53,7 @@ class QuestionController extends Controller
         $questions = Question::get();
         return view('questions.index', compact('questions'));
     }
-
+    
     public function edit($id)
     {
         // puxando as questões do banco

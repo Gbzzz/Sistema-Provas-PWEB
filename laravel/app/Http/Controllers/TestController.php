@@ -28,7 +28,7 @@ class TestController extends Controller
             $test->questions()->attach($selectedId);
         }
 
-        return redirect('/dashboard')->with('success-message', 'Teste criado com sucesso!');
+        return redirect('/dashboard')->with('success-message', 'Prova criada com sucesso!');
     }
 
 
